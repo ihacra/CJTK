@@ -1,10 +1,10 @@
-package com.hacra.cjtk.modules.sys.service;
+package com.hacra.cjtk.modules.question.service;
 
 import org.springframework.stereotype.Service;
 
 import com.hacra.cjtk.commons.base.BaseService;
-import com.hacra.cjtk.modules.sys.dao.QuestionDao;
-import com.hacra.cjtk.modules.sys.entity.Question;
+import com.hacra.cjtk.modules.question.dao.QuestionDao;
+import com.hacra.cjtk.modules.question.entity.Question;
 
 /**
  * service

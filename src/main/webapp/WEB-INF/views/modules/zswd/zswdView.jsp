@@ -11,6 +11,7 @@
 		<jsp:param name="item" value="0"/>
 	</jsp:include>
 	<div class="main">
+		<input type="hidden" name="id" value="${question.id}"/>
 		<div class="area-zswd">
 			<div class="zswd-row">
 				<span class="zswd-left">题目</span>
@@ -20,10 +21,10 @@
 					</c:if>
 					<c:if test="${question.type eq '1'}">
 						选择题：${question.title}
-						<br/>A. ${question.optionA}
-						<br/>B. ${question.optionB}
-						<br/>C. ${question.optionC}
-						<br/>D. ${question.optionD}
+						<br/>&nbsp;A. ${question.optionA}
+						<br/>&nbsp;B. ${question.optionB}
+						<br/>&nbsp;C. ${question.optionC}
+						<br/>&nbsp;D. ${question.optionD}
 					</c:if>
 					<c:if test="${question.type eq '2'}">
 						判断题：${question.title}

@@ -19,6 +19,6 @@ public class IndexController {
 	 */
 	@RequestMapping("")
 	public String index() {
-		return "redirect:/zswd/view";
+		return "redirect:/zswd/";
 	}
 }

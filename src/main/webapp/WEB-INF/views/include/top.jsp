@@ -7,7 +7,7 @@
 		<div class="guide-container">
 			<div class="menu-container">
 				<img class="menu-logo" src="/image/logo.png" alt="logo">
-				<a class="menu-item" target="_blank">会计题库</a>
+				<a class="menu-item" target="_blank" href="/question/">会计题库</a>
 			</div>
 			<% String item = request.getParameter("item"); %>
 			<a class="guide-item <% if("0".equals(item)){%>active<%} %>">知识问答</a>

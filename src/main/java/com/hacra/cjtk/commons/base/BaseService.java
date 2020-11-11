@@ -30,6 +30,15 @@ public abstract class BaseService<D extends BaseDao<T>, T extends BaseEntity> {
 	}
 	
 	/**
+	 * 获取单条数据
+	 * @param entity
+	 * @return
+	 */
+	public T get(T entity) {
+		return dao.get(entity.getId());
+	}
+	
+	/**
 	 * 获取多条数据
 	 * @param entity
 	 * @return
@@ -62,5 +71,13 @@ public abstract class BaseService<D extends BaseDao<T>, T extends BaseEntity> {
 	public void delete(T entity) {
 		entity.setUpdateDate(new Date());
 		dao.delete(entity);
+	}
+	
+	/**
+	 * 获取最大id
+	 * @return
+	 */
+	public String getMaxId() {
+		return dao.getMaxId();
 	}
 }

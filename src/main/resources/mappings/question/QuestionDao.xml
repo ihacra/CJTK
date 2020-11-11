@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.hacra.cjtk.modules.sys.dao.QuestionDao">
+<mapper namespace="com.hacra.cjtk.modules.question.dao.QuestionDao">
 
 	<sql id="questionColumns">
 		a.id AS "id",
@@ -93,4 +93,7 @@
 		SELECT nextval("question")
 	</select>
 
+	<select id="getMaxId" resultType="String">
+		SELECT currval('question')
+	</select>
 </mapper>

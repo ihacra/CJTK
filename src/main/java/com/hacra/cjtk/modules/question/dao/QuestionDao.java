@@ -1,9 +1,9 @@
-package com.hacra.cjtk.modules.sys.dao;
+package com.hacra.cjtk.modules.question.dao;
 
 import org.apache.ibatis.annotations.Mapper;
 
 import com.hacra.cjtk.commons.base.BaseDao;
-import com.hacra.cjtk.modules.sys.entity.Question;
+import com.hacra.cjtk.modules.question.entity.Question;
 
 /**
  * dao

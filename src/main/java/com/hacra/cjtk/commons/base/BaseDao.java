@@ -46,9 +46,16 @@ public interface BaseDao<T> {
 	public int delete(T entity);
 	
 	/**
-	 * 获取id
+	 * 获取下一id
 	 * @param entity
 	 * @return
 	 */
 	public String getNextId();
+	
+	/**
+	 * 获取最大id
+	 * @param entity
+	 * @return
+	 */
+	public String getMaxId();
 }

@@ -8,8 +8,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import com.hacra.cjtk.commons.util.StringUtils;
-import com.hacra.cjtk.modules.sys.entity.Question;
-import com.hacra.cjtk.modules.sys.service.QuestionService;
+import com.hacra.cjtk.modules.question.entity.Question;
+import com.hacra.cjtk.modules.question.service.QuestionService;
 import com.hacra.cjtk.modules.zswd.service.ZswdService;
 
 /**
@@ -43,9 +43,12 @@ public class ZswdController {
 	 * 知识问答
 	 * @return
 	 */
-	@RequestMapping("view")
+	@RequestMapping({"view", ""})
 	public String view(Question question, Model model) {
+		if (question == null || StringUtils.isBlank(question.getId())) {
+			question = zswdService.randomQuestion();
+		}
 		model.addAttribute("question", question);
-		return "modules/zswd/view";
+		return "modules/zswd/zswdView";
 	}
 }

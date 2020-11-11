@@ -1,4 +1,4 @@
-package com.hacra.cjtk.modules.sys.entity;
+package com.hacra.cjtk.modules.question.entity;
 
 import com.hacra.cjtk.commons.base.BaseEntity;
 
