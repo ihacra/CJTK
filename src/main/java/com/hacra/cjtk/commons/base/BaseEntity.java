@@ -17,9 +17,11 @@ public abstract class BaseEntity implements Serializable {
 	private Date createDate;	// 创建日期
 	private Date updateDate;	// 更新日期
 	private String delFlag;		// 删除标记（0：正常；1：删除）
+	public static final String DEL_FLAG_NORMAL = "0";
+	public static final String DEL_FLAG_DELETE = "1";
 	
 	public BaseEntity() {
-		this.delFlag = "0";
+		this.delFlag = DEL_FLAG_NORMAL;
 	}
 	
 	public BaseEntity(String id) {

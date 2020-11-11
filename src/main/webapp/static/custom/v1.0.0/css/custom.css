@@ -20,7 +20,7 @@ a {
 	max-width: 100%;
 	min-width: 100%;
 	background: #fff;
-	box-shadow: 0 2px 2px #ccc;
+	box-shadow: 0 1px 1px #ccc;
 }
 
 .guide-container {
@@ -30,7 +30,6 @@ a {
 	margin: 0 auto;
 	text-align: right;
 	line-height: 60px;
-	
 }
 
 .menu-container {
@@ -86,9 +85,51 @@ a {
 	display: inline-block;
 }
 
+.main {
+	width: 1000px;
+	margin: 0 auto;
+	padding-top: 60px;
+}
 
+.area-zswd {
+	width: 730px;
+	height: 100%;
+	padding: 30px;
+	margin: 50px auto 0 auto;
+	border: 1px solid #3af;
+	border-radius: 10px;
+	background: rgba(51, 170, 255, 0.1);
+}
 
+.zswd-row {
+	width: 100%;
+	height: 100%;
+	color: #000;
+	font-size: 14px;
+	line-height: 30px;
+	display: inline-flex;
+	margin: 12px 0;
+}
 
+.zswd-left {
+	color: #fff;
+	float: left;
+	height: 30px;
+	min-width: 30px;
+	font-size: 12px;
+	text-align: center;
+	background-color: #3af;
+	border-radius: 15px;
+	padding: 0 15px;
+}
+
+.zswd-right {
+	float: left;
+	margin-left: 12px;
+	text-align:justify;
+	word-wrap:break-word;
+	word-break:break-all;
+}
 
 
 
