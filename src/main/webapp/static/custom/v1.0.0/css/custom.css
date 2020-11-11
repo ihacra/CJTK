@@ -141,6 +141,7 @@ a {
 	height: 24px;
 	position: relative;
 	background: #3af;
+	
 	border-radius: 100%;
 	vertical-align: middle;
 	margin-left: 15px;
@@ -185,6 +186,5 @@ a {
 .radio-box input[type="radio"]:checked + span {
 	opacity: 1;
 }
-
 
 

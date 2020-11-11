@@ -15,18 +15,7 @@
 			<div class="zswd-row">
 				<span class="zswd-left">类型</span>
 				<div class="zswd-right">
-					<div class="wrapper">
-						<div class="radio-box">
-							<input type="radio" checked="checked" id="a" name="1"/>
-							<span></span>
-						</div>
-						<label for="a">选择题</label>
-						<div class="radio-box">
-							<input type="radio" id="b" name="1"/>
-							<span></span>
-						</div>
-						<label for="b">填空题</label>
-					</div>
+					<sys:radio name="type" labels="填空题,选择题,判断题" values="0,1,2" checked="0"></sys:radio>
 				</div>
 			</div>
 			<div class="zswd-row">
