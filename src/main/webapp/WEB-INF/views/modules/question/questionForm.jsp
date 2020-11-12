@@ -11,7 +11,7 @@
 		<jsp:param name="item" value="0"/>
 	</jsp:include>
 	<div class="main">
-		<div class="area-zswd">
+		<div class="area-zswd" style="margin-top: 60px;">
 			<div class="zswd-row">
 				<span class="zswd-left">类型</span>
 				<div class="zswd-right">

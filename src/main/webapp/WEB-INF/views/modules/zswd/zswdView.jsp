@@ -12,7 +12,7 @@
 	</jsp:include>
 	<div class="main">
 		<input type="hidden" name="id" value="${question.id}"/>
-		<div class="area-zswd">
+		<div class="area-zswd" style="margin-top: 60px;">
 			<div class="zswd-row">
 				<span class="zswd-left">题目</span>
 				<div class="zswd-right">
