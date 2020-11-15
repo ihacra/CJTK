@@ -24,6 +24,15 @@ a {
 	margin-left: 15px;
 }
 
+.radio-box:hover {
+	opacity: 0.75;
+}
+
+.radio-box:active {
+	opacity: 0.7;
+	box-shadow: 0 0 1px 1px #409eff;
+}
+
 .radio-box input {
 	position: absolute;
 	top: -2px;
