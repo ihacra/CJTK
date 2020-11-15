@@ -3,4 +3,4 @@
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 <%@ taglib prefix="fns" uri="/WEB-INF/tlds/fns.tld" %>
-<%@ taglib prefix="sys" tagdir="/WEB-INF/tags/sys" %>
+<%@ taglib prefix="cl" tagdir="/WEB-INF/tags/custom-label" %>

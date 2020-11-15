@@ -20,7 +20,7 @@ public class Question extends BaseEntity {
 	private String answer;		// 答案
 	private String analysis;	// 解析
 	private String label;		// 标签分类
-	private String type;		// 题目类型（0：填空；1：选择；2：判断）
+	private String type;		// 题目类型（0：选择；1：填空；2：判断）
 	
 	public Question() {
 		super();
