@@ -24,14 +24,14 @@
 				<span class="zswd-left bg-color1">题目</span>
 				<div class="zswd-right">
 					<c:if test="${question.type eq '0'}">
-						填空题：${question.title}
-					</c:if>
-					<c:if test="${question.type eq '1'}">
 						选择题：${question.title}
 						<br/>A. ${question.optionA}
 						<br/>B. ${question.optionB}
 						<br/>C. ${question.optionC}
 						<br/>D. ${question.optionD}
+					</c:if>
+					<c:if test="${question.type eq '1'}">
+						填空题：${question.title}
 					</c:if>
 					<c:if test="${question.type eq '2'}">
 						判断题：${question.title}

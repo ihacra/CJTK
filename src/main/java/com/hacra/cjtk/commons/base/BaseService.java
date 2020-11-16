@@ -54,6 +54,7 @@ public abstract class BaseService<D extends BaseDao<T>, T extends BaseEntity> {
 	@Transactional(readOnly = false)
 	public void save(T entity) {
 		if (StringUtils.isBlank(entity.getId())) {
+			entity.setId(dao.getNextId());
 			entity.setCreateDate(new Date());
 			entity.setUpdateDate(entity.getCreateDate());
 			dao.insert(entity);

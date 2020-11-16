@@ -7,6 +7,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import com.hacra.cjtk.commons.base.BaseController;
 import com.hacra.cjtk.commons.util.StringUtils;
 import com.hacra.cjtk.modules.question.entity.Question;
 import com.hacra.cjtk.modules.question.service.QuestionService;
@@ -20,7 +21,7 @@ import com.hacra.cjtk.modules.zswd.service.ZswdService;
  */
 @Controller
 @RequestMapping("zswd")
-public class ZswdController {
+public class ZswdController extends BaseController {
 
 	@Autowired
 	private ZswdService zswdService;
@@ -48,7 +49,7 @@ public class ZswdController {
 		if (question == null || StringUtils.isBlank(question.getId())) {
 			question = zswdService.randomQuestion();
 		}
-		model.addAttribute("question", question);
+		addAttribute(model, "question", question);
 		return "modules/zswd/zswdView";
 	}
 }

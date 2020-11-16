@@ -21,22 +21,18 @@
                 }
             }
 		});
-
-		// 提交表单
-		$("#btnSave").click(function() {
-			$(this).attr("disabled", true);
-			dialogConfirm({
-				title: "信息",
-				content: "是否确认提交？",
-				confirm: function() {
-					$("#inputForm").submit();
-				},
-				cancel: function() {
-					$("#btnSave").attr("disabled", false);
-				}
-			});
-		});
 	});
+	
+	// 提交表单
+	function btnSaveOnclick() {
+		dialog2({
+			trigger: "btnSave",
+			content: "是否确认提交？",
+			confirm: function() {
+				$("#inputForm").submit();
+			}
+		});
+	}
 	
 	// 类型为选择题时显示ABCD选项输入框
 	function typeOnchange(id, value) {
@@ -57,6 +53,7 @@
 		<jsp:param name="item" value="0"/>
 	</jsp:include>
 	<div class="main">
+		<cw:toast content="${message}"></cw:toast>
 		<form:form id="inputForm" modelAttribute="question" action="/question/save" method="post">
 			<div class="area-zswd">
 				<div class="zswd-row">
@@ -105,7 +102,7 @@
 				</div>
 				<div class="zswd-row zswd-end">
 					<div class="btn-group">
-						<button id="btnSave" class="bg-color2" type="button">保存</button>
+						<button id="btnSave" class="bg-color2" type="button" onclick="btnSaveOnclick()">保存</button>
 					</div>
 				</div>
 			</div>

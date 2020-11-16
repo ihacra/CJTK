@@ -4,3 +4,4 @@
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 <%@ taglib prefix="fns" uri="/WEB-INF/tlds/fns.tld" %>
 <%@ taglib prefix="cl" tagdir="/WEB-INF/tags/custom-label" %>
+<%@ taglib prefix="cw" tagdir="/WEB-INF/tags/custom-widget" %>
