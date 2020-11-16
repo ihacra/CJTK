@@ -21,12 +21,22 @@
                 }
             }
 		});
+
+		// 提交表单
+		$("#btnSave").click(function() {
+			$(this).attr("disabled", true);
+			dialogConfirm({
+				title: "信息",
+				content: "是否确认提交？",
+				confirm: function() {
+					$("#inputForm").submit();
+				},
+				cancel: function() {
+					$("#btnSave").attr("disabled", false);
+				}
+			});
+		});
 	});
-	
-	// 提交表单
-	function btnSubmit() {
-		$("#inputForm").submit();
-	}
 	
 	// 类型为选择题时显示ABCD选项输入框
 	function typeOnchange(id, value) {
@@ -95,7 +105,7 @@
 				</div>
 				<div class="zswd-row zswd-end">
 					<div class="btn-group">
-						<button class="bg-color2" type="button" onclick="btnSubmit()">保存</button>
+						<button id="btnSave" class="bg-color2" type="button">保存</button>
 					</div>
 				</div>
 			</div>

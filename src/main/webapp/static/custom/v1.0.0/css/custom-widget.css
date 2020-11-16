@@ -1,0 +1,49 @@
+.dialog-area {
+	position: fixed;
+	left: 48%;
+	top: 45%;
+	min-width: 280px;
+	z-index: 1000;
+	background: #fff;
+	border-radius: 4px;
+	box-shadow: 1px 1px 50px rgba(0,0,0,.3);
+}
+
+.dialog-area-title {
+	color: rgb(64,158,255);
+	cursor: move;
+	padding: 0 16px;
+	height: 40px;
+	line-height: 40px;
+	border-bottom: 1px solid #eee;
+	font-size: 14px;
+	overflow: hidden;
+	background-color: #F8F8F8;
+	border-radius: 4px 4px 0 0;
+	text-overflow: ellipsis;
+	white-space: nowrap;
+	font-weight: bold;
+}
+
+.dialog-area-close {
+	height: 40px;
+	width: 40px;
+	text-align: center;
+	line-height: 40px;
+	position: absolute;
+	top: 0;
+	right: 0;
+	font-size: 26px;
+	cursor: pointer;
+}
+
+.dialog-area-close:hover {
+	color: rgb(64,158,255);
+}
+
+.dialog-area-content {
+	padding: 20px;
+	font-size: 15px;
+}
+
+
