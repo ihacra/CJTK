@@ -1,3 +1,13 @@
+// 提示窗口
+function toast1(clazz, autoClose) {
+	$("."+clazz).slideDown("slow");
+	if (autoClose != false) {
+		setTimeout(function() {
+			$("."+clazz).fadeOut("slow");
+		}, 4300);
+	}
+}
+
 // 弹出确认对话框
 // settings = {trigger, title, content, confirm, cancel}
 function dialog2(settings) {
@@ -7,7 +17,7 @@ function dialog2(settings) {
 	var dialog = $("<div id='"+dialogId+"' class='dialog-area'></div>");
 	var dialogTitle = $("<div class='dialog-area-title'>"+settings.title+"</div>");
 	dialog.append(dialogTitle);
-	var dialogClose = $("<div class='dialog-area-close'>×</div>");
+	var dialogClose = $("<div class='dialog-area-close btn'>×</div>");
 	dialogClose.attr("title", "关闭");
 	dialogClose.click(function() {
 		if (settings.cancel != null) settings.cancel(); 
@@ -17,10 +27,10 @@ function dialog2(settings) {
 	dialog.append(dialogClose);
 	var dialogContent = $("<div class='dialog-area-content'>"+settings.content+"</div>");
 	dialog.append(dialogContent);
-	var dialogCancel = $("<div class='dialog-area-btn btn-cancel'>取消</div>")
+	var dialogCancel = $("<div class='dialog-area-btn btn-cancel btn'>取消</div>")
 	dialogCancel.click(function() {dialogClose.click()});
 	dialog.append(dialogCancel);
-	var dialogConfirm = $("<div class='dialog-area-btn btn-confirm'>确认</div>")
+	var dialogConfirm = $("<div class='dialog-area-btn btn-confirm btn'>确认</div>")
 	dialogConfirm.click(function() {
 		settings.confirm(); 
 		$("#"+dialogId).remove(); 
@@ -29,4 +39,3 @@ function dialog2(settings) {
 	dialog.append(dialogConfirm);
 	$("body").append(dialog);
 }
-

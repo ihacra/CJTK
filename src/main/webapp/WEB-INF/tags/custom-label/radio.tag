@@ -12,13 +12,13 @@
 	<c:set var="labs" value="${fn:split(label, ',')}"></c:set>
 	<c:set var="vals" value="${fn:split(value, ',')}"></c:set>
 	<c:forEach items="${vals}" var="vv" varStatus="vs">
-		<div class="radio-box">
+		<div class="radio-box btn">
 			<input type="radio" <c:if test="${vv eq checked}">checked="checked"</c:if>
 				id="${name}_${vv}" name="${name}" value="${vv}" class="${classStyle}"
 				onchange="${onchange}('${name}_${vv}','${vv}')"/> 
 			<span></span>
 		</div>
-		<label for="${name}_${vv}">${labs[vs.index]}</label>
+		<label class="btn" for="${name}_${vv}">${labs[vs.index]}</label>
 	</c:forEach>
 	<c:if test="${fn:contains(classStyle, 'required')}"><div class="required-tip">*</div></c:if>
 </div>

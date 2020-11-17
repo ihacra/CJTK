@@ -42,7 +42,7 @@ public class QuestionController extends BaseController {
 	 * 添加页面
 	 * @return
 	 */
-	@RequestMapping({"add", ""})
+	@RequestMapping({"form", ""})
 	public String add(Model model) {
 		return "modules/question/questionForm";
 	}
@@ -54,8 +54,8 @@ public class QuestionController extends BaseController {
 	 */
 	@RequestMapping("save")
 	public String save(Question question, RedirectAttributes redirectAttributes) {
-		// questionService.save(question);
-		addMessage(redirectAttributes, "会计题目添加成功");
+		questionService.save(question);
+		addMessage(redirectAttributes, "会计题目添加成功!");
 		return "redirect:/question";
 	}
 }

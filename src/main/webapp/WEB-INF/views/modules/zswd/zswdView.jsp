@@ -8,8 +8,14 @@
 </head>
 <head>
 <script>
+	// 修改题目
 	function btnEdit(id) {
 		window.location.href = "/question/?id=" + id;
+	}
+	
+	// 显示元素
+	function btnShow(id) {
+		$("#"+id).toggle();
 	}
 </script>
 </head>
@@ -21,7 +27,7 @@
 		<input type="hidden" name="id" value="${question.id}"/>
 		<div class="area-zswd">
 			<div class="zswd-row">
-				<span class="zswd-left bg-color1">题目</span>
+				<span class="zswd-left bg-color1 btn" onclick="btnEdit('${question.id}')" title="修改题目">题目</span>
 				<div class="zswd-right">
 					<c:if test="${question.type eq '0'}">
 						选择题：${question.title}
@@ -39,21 +45,25 @@
 				</div>
 			</div>
 			<div class="zswd-row">
-				<span class="zswd-left bg-color2">答案</span>
-				<div class="zswd-right">${question.answer}</div>
+				<span class="zswd-left bg-color2 btn" onclick="btnShow('answer')" title="显示答案">答案</span>
+				<div class="zswd-right" id="answer" style="display: none;">${question.answer}</div>
 			</div>
 			<div class="zswd-row">
-				<span class="zswd-left bg-color3">解析</span>
-				<div class="zswd-right">${question.analysis}</div>
+				<span class="zswd-left bg-color3 btn" onclick="btnShow('analysis')" title="显示解析">解析</span>
+				<div class="zswd-right" id="analysis" style="display: none;">
+					<c:if test="${empty question.analysis}">无</c:if>
+					<c:if test="${not empty question.analysis}">${question.analysis}</c:if>
+				</div>
 			</div>
 			<div class="zswd-row">
-				<span class="zswd-left bg-color4">标签</span>
-				<div class="zswd-right">${question.label}</div>
+				<span class="zswd-left bg-color4 btn" onclick="btnShow('label')" title="显示标签">标签</span>
+				<div class="zswd-right" id="label" style="display: none;">
+					<c:if test="${empty question.label}">无</c:if>
+					<c:if test="${not empty question.label}">${question.label}</c:if>
+				</div>
 			</div>
 			<div class="zswd-row zswd-end">
 				<div class="btn-group">
-					<button class="bg-color2" onclick="btnEdit('${question.id}')">编辑</button>
-					<button class="bg-color3" onclick="btnShow()">显示答案</button>
 					<button class="bg-color1" onclick="btnNext()">下一题</button>
 				</div>
 			</div>
