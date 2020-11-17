@@ -171,8 +171,14 @@ label.error {
 	opacity: 0.85;
 }
 
-.btn:active, .btn:disabled {
+.btn:active {
 	opacity: 0.75;
+	box-shadow: inset 0 0 1px 1px #fff;
+}
+
+.btn:disabled {
+	opacity: 0.75;
+	cursor: default;
 	box-shadow: inset 0 0 1px 1px #fff;
 }
 

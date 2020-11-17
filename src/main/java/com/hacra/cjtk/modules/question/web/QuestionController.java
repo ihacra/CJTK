@@ -48,14 +48,32 @@ public class QuestionController extends BaseController {
 	}
 	
 	/**
+	 * 修改页面
+	 * @param question
+	 * @param model
+	 * @return
+	 */
+	@RequestMapping("modify")
+	public String modify(Question question, String path, Model model) {
+		addAttribute(model, "path", path);
+		addAttribute(model, "question", question);
+		return "modules/question/questionModify";
+	}
+	
+	/**
 	 * 保存方法
 	 * @param question
 	 * @return
 	 */
 	@RequestMapping("save")
-	public String save(Question question, RedirectAttributes redirectAttributes) {
+	public String save(Question question, String path, RedirectAttributes redirectAttributes) {
 		questionService.save(question);
-		addMessage(redirectAttributes, "会计题目添加成功!");
-		return "redirect:/question";
+		if ("zswd".equals(path)) {
+			addMessage(redirectAttributes, "会计题目修改成功!");
+			return "redirect:/zswd/?id=" + question.getId();
+		} else {
+			addMessage(redirectAttributes, "会计题目添加成功!");
+			return "redirect:/question/";
+		}
 	}
 }

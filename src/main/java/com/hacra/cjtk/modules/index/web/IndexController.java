@@ -21,6 +21,6 @@ public class IndexController extends BaseController {
 	 */
 	@RequestMapping("")
 	public String index() {
-		return "redirect:/zswd";
+		return "redirect:/zswd/";
 	}
 }

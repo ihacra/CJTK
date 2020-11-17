@@ -93,7 +93,7 @@
 		SELECT nextval("question")
 	</select>
 
-	<select id="getMaxId" resultType="String">
-		SELECT currval('question')
+	<select id="getIdList" resultType="String">
+		SELECT id FROM question t WHERE t.del_flag = '0'
 	</select>
 </mapper>

@@ -1,7 +1,7 @@
 .dialog-area {
 	width: 360px;
 	position: fixed;
-	top: calc(50% - 150px);
+	top: calc(50% - 160px);
 	left: calc(50% - 130px);
 	z-index: 1000;
 	background: #fff;
@@ -13,8 +13,8 @@
 .dialog-area-title {
 	color: rgb(64,158,255);
     padding: 0 16px;
-    height: 42px;
-    line-height: 46px;
+    height: 38px;
+    line-height: 42px;
     border-bottom: 1px solid #eee;
     font-size: 16px;
     overflow: hidden;
@@ -26,10 +26,10 @@
 }
 
 .dialog-area-close {
-	height: 42px;
-    width: 42px;
+	height: 38px;
+    width: 38px;
     text-align: center;
-    line-height: 46px;
+    line-height: 42px;
     position: absolute;
     top: 0;
     right: 0;
@@ -43,7 +43,7 @@
 }
 
 .dialog-area-content {
-	padding: 26px;
+	padding: 24px;
 	font-size: 15px;
 }
 
@@ -71,16 +71,15 @@
 }
 
 .toast-area {
-	width: 700px;
+	width: 600px;
 	padding: 16px;
 	position: fixed;
 	text-align: center;
-	top: 61px;
-	left: calc(50% - 366px);
+	top: 36px;
+	left: calc(50% - 300px);
 	font-size: 14px;
 	z-index: 1200;
 	color: #fff;
-	font-weight: bold;
 	border-radius: 4px;
 	display: none;
 }

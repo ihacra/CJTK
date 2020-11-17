@@ -1,6 +1,7 @@
 package com.hacra.cjtk.modules.question.entity;
 
 import com.hacra.cjtk.commons.base.BaseEntity;
+import com.hacra.cjtk.commons.util.StringUtils;
 
 /**
  * entity
@@ -79,7 +80,7 @@ public class Question extends BaseEntity {
 	}
 
 	public String getAnalysis() {
-		return analysis;
+		return StringUtils.isBlank(analysis) ? "无" : analysis;
 	}
 
 	public void setAnalysis(String analysis) {
@@ -87,7 +88,7 @@ public class Question extends BaseEntity {
 	}
 
 	public String getLabel() {
-		return label;
+		return StringUtils.isBlank(label) ? "无" : label;
 	}
 
 	public void setLabel(String label) {

@@ -18,7 +18,7 @@ import com.hacra.cjtk.commons.util.StringUtils;
 public abstract class BaseService<D extends BaseDao<T>, T extends BaseEntity> {
 
 	@Autowired
-	private D dao;
+	protected D dao;
 	
 	/**
 	 * 获取单条数据
@@ -72,13 +72,5 @@ public abstract class BaseService<D extends BaseDao<T>, T extends BaseEntity> {
 	public void delete(T entity) {
 		entity.setUpdateDate(new Date());
 		dao.delete(entity);
-	}
-	
-	/**
-	 * 获取最大id
-	 * @return
-	 */
-	public String getMaxId() {
-		return dao.getMaxId();
 	}
 }

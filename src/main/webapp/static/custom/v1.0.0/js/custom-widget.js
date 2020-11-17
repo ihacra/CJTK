@@ -1,9 +1,18 @@
 // 提示窗口
-function toast1(clazz, autoClose) {
-	$("."+clazz).slideDown("slow");
-	if (autoClose != false) {
+function toast1(content, autoClose) {
+	var type = "toast-success";
+	if (content.indexOf("失败") != -1) {
+		type = "toast-error";
+	}
+	var toast = $("<div class='toast-area "+type+"'>"+content+"</div>");
+	var toastClose = $("<div class='toast-close'>×</div>");
+	toastClose.click(function() {$('.toast-area').fadeOut('slow');});
+	toast.append(toastClose);
+	$("body").append(toast);
+	$(".toast-area").slideDown("slow");
+	if (autoClose == null || autoClose) {
 		setTimeout(function() {
-			$("."+clazz).fadeOut("slow");
+			$(".toast-area").fadeOut("slow");
 		}, 4300);
 	}
 }

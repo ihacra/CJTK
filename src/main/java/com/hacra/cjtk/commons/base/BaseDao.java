@@ -51,11 +51,4 @@ public interface BaseDao<T> {
 	 * @return
 	 */
 	public String getNextId();
-	
-	/**
-	 * 获取最大id
-	 * @param entity
-	 * @return
-	 */
-	public String getMaxId();
 }

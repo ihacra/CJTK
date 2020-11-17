@@ -1,11 +1,14 @@
 package com.hacra.cjtk.modules.zswd.web;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.hacra.cjtk.commons.base.BaseController;
 import com.hacra.cjtk.commons.util.StringUtils;
@@ -23,6 +26,8 @@ import com.hacra.cjtk.modules.zswd.service.ZswdService;
 @RequestMapping("zswd")
 public class ZswdController extends BaseController {
 
+	// 随机ID数组
+	private List<String> idList;
 	@Autowired
 	private ZswdService zswdService;
 	@Autowired
@@ -39,17 +44,36 @@ public class ZswdController extends BaseController {
 		}
 		return question;
 	}
-	 
+	
 	/**
 	 * 知识问答
 	 * @return
 	 */
 	@RequestMapping({"view", ""})
 	public String view(Question question, Model model) {
-		if (question == null || StringUtils.isBlank(question.getId())) {
-			question = zswdService.randomQuestion();
+		idList = zswdService.randomQuestionIdList();
+		if (StringUtils.isBlank(question.getId())) {
+			question = questionService.get(String.valueOf(idList.get(0)));
 		}
 		addAttribute(model, "question", question);
+		addAttribute(model, "length", idList.size());
 		return "modules/zswd/zswdView";
+	}
+	
+	/**
+	 * 返回对应ID的问题
+	 * @param index
+	 * @return
+	 */
+	@ResponseBody
+	@RequestMapping("show")
+	public Question show(int index) {
+		Question question = null;
+		if (index < 0 || index >= idList.size()) {
+			question = new Question();
+		} else {
+			question = questionService.get(String.valueOf(idList.get(index)));
+		}
+		return question;
 	}
 }

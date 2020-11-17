@@ -2,6 +2,7 @@
 <%@ include file="/WEB-INF/views/include/taglib.jsp"%>
 
 <%@ attribute name="content" type="java.lang.String" required="true" description=""%>
+<%@ attribute name="autoClose" type="java.lang.String" description=""%>
 
 <c:if test="${not empty content}">
 	<c:set var="type" value="toast-success"></c:set>
@@ -13,6 +14,11 @@
 		<div class="toast-close" onclick="$('.toast-area').fadeOut('slow');">×</div>
 	</div>
 	<script>
-		toast1("toast-area");
+		$(".toast-area").slideDown("slow");
+		if ("${autoClose}" != "false") {
+			setTimeout(function() {
+				$(".toast-area").fadeOut("slow");
+			}, 4300);
+		}
 	</script>
 </c:if>

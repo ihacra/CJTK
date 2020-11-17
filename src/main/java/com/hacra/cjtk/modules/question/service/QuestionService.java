@@ -1,5 +1,7 @@
 package com.hacra.cjtk.modules.question.service;
 
+import java.util.List;
+
 import org.springframework.stereotype.Service;
 
 import com.hacra.cjtk.commons.base.BaseService;
@@ -15,4 +17,11 @@ import com.hacra.cjtk.modules.question.entity.Question;
 @Service
 public class QuestionService extends BaseService<QuestionDao, Question> {
 
+	/**
+	 * 获取ID列表
+	 * @return
+	 */
+	public List<String> getIdList() {
+		return dao.getIdList();
+	}
 }
