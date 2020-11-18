@@ -13,7 +13,7 @@ function toast1(content, autoClose) {
 	if (autoClose == null || autoClose) {
 		setTimeout(function() {
 			$(".toast-area").fadeOut("slow");
-		}, 4300);
+		}, 4000);
 	}
 }
 

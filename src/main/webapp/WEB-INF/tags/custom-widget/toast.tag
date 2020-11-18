@@ -18,7 +18,7 @@
 		if ("${autoClose}" != "false") {
 			setTimeout(function() {
 				$(".toast-area").fadeOut("slow");
-			}, 4300);
+			}, 4000);
 		}
 	</script>
 </c:if>

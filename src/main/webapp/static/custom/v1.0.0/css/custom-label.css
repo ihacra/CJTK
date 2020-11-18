@@ -84,6 +84,7 @@ textarea {
 	border: 1px solid #999;
     margin-bottom: -7px;
     background: #fff;
+    resize: none;
 	font-family: "Microsoft YaHei","微软雅黑",Arial,sans-serif;
 }
 
@@ -99,7 +100,7 @@ textarea:focus {
 .textarea-count {
 	position: absolute;
     bottom: 2px;
-    right: 12px;
+    right: 10px;
     color: #666;
     font-size: 12px;
     line-height: 16px;
