@@ -7,10 +7,20 @@
 <title>会计题库</title>
 </head>
 <head>
+<style>
+	.btnStyle {
+		opacity: 0;
+	}
+	
+	.btnStyle:hover {
+		opacity: 1;
+	}
+</style>
 <script>
 	// 修改题目
-	function btnEdit() {
+	function btnEditOnclick() {
 		dialog({
+			trigger: "btnEdit",
 			content: "是否确认修改该问题条目？",
 			confirm: function() {
 				window.location.href = "/question/modify?path=qbtk&id=" + $("#id").val();
@@ -18,11 +28,15 @@
 		});
 	}
 	
-	// 显示答案
-	function btnShow() {
-		$("#answer").toggle();
-		$("#analysis").toggle();
-		$("#label").toggle();
+	// 删除题目
+	function btnDeleteOnclick() {
+		dialog({
+			trigger: "btnDelete",
+			content: "是否确认删除该问题条目？",
+			confirm: function() {
+				window.location.href = "/question/delete?id=" + $("#id").val();
+			}
+		});
 	}
 </script>
 </head>
@@ -35,8 +49,8 @@
 		<input type="hidden" id="id" name="id" value="${question.id}"/>
 		<div class="area-zswd">
 			<div class="zswd-row">
-				<span class="zswd-left bg-color4 btn" onclick="btnEdit()" title="修改题目">题目</span>
-				<div class="zswd-right" id="title">
+				<span class="zswd-left bg-color4">题目</span>
+				<div class="zswd-right">
 					<c:if test="${question.type eq '0'}">
 						<b>${question.code}：</b>${question.title}
 						<p><br/>A. ${question.optionA}
@@ -50,26 +64,28 @@
 				</div>
 			</div>
 			<div class="zswd-row">
-				<span class="zswd-left bg-color2 btn" onclick="btnShow()" title="显示答案">答案</span>
-				<div class="zswd-right" id="answer" style="display: none; color: sienna;">
+				<span class="zswd-left bg-color2">答案</span>
+				<div class="zswd-right" style="color: sienna;">
 					${question.answer}
 				</div>
 			</div>
 			<div class="zswd-row">
 				<span class="zswd-left bg-color1">解析</span>
-				<div class="zswd-right" id="analysis" style="display: none; color: sienna;">
+				<div class="zswd-right" style="color: sienna;">
 					${question.analysis}
 				</div>
 			</div>
 			<div class="zswd-row">
 				<span class="zswd-left bg-color3">标签</span>
-				<div class="zswd-right" id="label" style="display: none; color: sienna;">
+				<div class="zswd-right" style="color: sienna;">
 					${question.label}
 				</div>
 			</div>
 			<div class="zswd-row zswd-end">
 				<div class="btn-group">
+					<button id="btnEdit" class="bg-color1 btnStyle" onclick="btnEditOnclick()">修改</button>
 					<button class="bg-color2" onclick="window.location.href='/qbtk/'">返回</button>
+					<button id="btnDelete" class="bg-color1 btnStyle" onclick="btnDeleteOnclick()">删除</button>
 				</div>
 			</div>
 		</div>

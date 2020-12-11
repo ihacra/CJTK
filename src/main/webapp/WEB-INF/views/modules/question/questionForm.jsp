@@ -6,11 +6,11 @@
 <%@ include file="/WEB-INF/views/include/head.jsp"%>
 <title>会计题库</title>
 <style>
-	.btnExcel {
+	.btnStyle {
 		opacity: 0;
 	}
 	
-	.btnExcel:hover {
+	.btnStyle:hover {
 		opacity: 1;
 	}
 </style>
@@ -138,9 +138,9 @@
 				</div>
 				<div class="zswd-row zswd-end">
 					<div class="btn-group">
-						<button id="btnImport" class="bg-color1 btnExcel" type="button" onclick="btnImportOnclick()">导入</button>
-						<button id="btnSave" class="bg-color2" type="button" onclick="btnSaveOnclick()">保存</button>
-						<button id="btnExport" class="bg-color1 btnExcel" type="button" onclick="btnExportOnclick()">导出</button>
+						<button id="btnImport" class="bg-color1 btnStyle" onclick="btnImportOnclick()">导入</button>
+						<button id="btnSave" class="bg-color2" onclick="btnSaveOnclick()">保存</button>
+						<button id="btnExport" class="bg-color1 btnStyle" onclick="btnExportOnclick()">导出</button>
 					</div>
 				</div>
 			</div>

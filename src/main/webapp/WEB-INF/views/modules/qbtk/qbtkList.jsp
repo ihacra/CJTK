@@ -84,9 +84,9 @@
 			</c:forEach>
 			<div class="zswd-row zswd-end">
 				<div class="btn-group">
-					<button id="btnPrev" class="bg-color2" type="button" onclick="page('${page.prev}')" <c:if test="${page.prev eq page.pageNo}">disabled="disabled"</c:if>>上一页</button>
+					<button id="btnPrev" class="bg-color2" type="button" onclick="page('${page.prev}')" <c:if test="${page.prev >= page.pageNo}">disabled="disabled"</c:if>>上一页</button>
 					${page.pageNo}/${page.totalPage}
-					<button id="btnNext" class="bg-color1" type="button" onclick="page('${page.next}')" <c:if test="${page.next eq page.pageNo}">disabled="disabled"</c:if>>下一页</button>
+					<button id="btnNext" class="bg-color1" type="button" onclick="page('${page.next}')" <c:if test="${page.next <= page.pageNo}">disabled="disabled"</c:if>>下一页</button>
 				</div>
 			</div>
 		</div>

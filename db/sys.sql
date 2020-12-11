@@ -64,7 +64,7 @@ CREATE TABLE `question` (
 	`answer` VARCHAR(512) NULL DEFAULT NULL COMMENT '答案',
 	`analysis` VARCHAR(1024) NOT NULL DEFAULT '无' COMMENT '解析',
 	`label` VARCHAR(128) NULL DEFAULT NULL COMMENT '标签分类',
-	`type` VARCHAR(8) NULL DEFAULT NULL COMMENT '题目类型（0：填空；1：选择；2：判断）',
+	`type` VARCHAR(8) NULL DEFAULT NULL COMMENT '题目类型（0：填空；1：选择）',
 	`create_date` TIMESTAMP NOT NULL COMMENT '创建日期',
 	`update_date` TIMESTAMP NOT NULL COMMENT '更新日期',
 	`del_flag` VARCHAR(8) NOT NULL DEFAULT '0' COMMENT '删除标记（0：正常；1：删除）',

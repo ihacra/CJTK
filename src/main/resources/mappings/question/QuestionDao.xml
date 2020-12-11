@@ -112,7 +112,7 @@
 	<update id="delete">
 		UPDATE question SET
 			del_flag = #{DEL_FLAG_DELETE},
-			update_date = #{updateDate},
+			update_date = #{updateDate}
 		WHERE id = #{id}
 	</update>
 

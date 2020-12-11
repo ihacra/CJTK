@@ -49,6 +49,10 @@ public class QuestionService extends BaseService<QuestionDao, Question> {
 	@Override
 	@Transactional(readOnly = false)
 	public void save(Question entity) {
+		if (StringUtils.isNotBlank(entity.getTitle())) {
+			String regex = "(（）|\\(\\))";
+			entity.setTitle(entity.getTitle().replaceAll(regex, "（ ）"));;
+		}
 		if (StringUtils.isBlank(entity.getId())) {
 			entity.setId(dao.getNextId());
 			entity.setCode("CJ" + StringUtils.formatLength(entity.getId(), 3));

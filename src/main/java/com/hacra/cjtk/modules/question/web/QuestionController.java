@@ -1,6 +1,5 @@
 package com.hacra.cjtk.modules.question.web;
 
-import java.io.IOException;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -78,6 +77,19 @@ public class QuestionController extends BaseController {
 	}
 	
 	/**
+	 * 删除方法
+	 * @param question
+	 * @param redirectAttributes
+	 * @return
+	 */
+	@RequestMapping("delete")
+	public String delete(Question question, RedirectAttributes redirectAttributes) {
+		questionService.delete(question);
+		addMessage(redirectAttributes, "会计题目删除成功!");
+		return "redirect:/qbtk/";
+	}
+	
+	/**
 	 * 导入Excel
 	 * @param multipartFile
 	 * @param redirectAttributes
@@ -86,13 +98,14 @@ public class QuestionController extends BaseController {
 	@RequestMapping("importExcel")
 	public String importExcel(@RequestParam("file") MultipartFile multipartFile, RedirectAttributes redirectAttributes) {
 		try {
-			ImportExcel importExcel = new ImportExcel(multipartFile);
+			ImportExcel importExcel = new ImportExcel(multipartFile, 0, 1);
 			List<Question> list = importExcel.getDataList(Question.class, 1);
 			for (Question question : list) {
+				question.setType("0");
 				questionService.save(question);
 			}
 			addMessage(redirectAttributes, "会计题目导入成功：共导入"+list.size()+"条！");
-		} catch (IOException e) {
+		} catch (Exception e) {
 			addMessage(redirectAttributes, "会计题目导入失败!");
 		}
 		return "redirect:/question/";
