@@ -98,13 +98,13 @@ body, html {
 	width: 1200px;
 	min-height: calc(100% - 61px);
 	margin: 0 auto;
+	padding-top: 20px;
 	display: flow-root;
 	background: #fff;
 }
 
 .area-zswd {
 	width: 730px;
-	padding: 30px;
 	margin: 0 auto;
 	border-radius: 6px;
 }
@@ -116,24 +116,25 @@ body, html {
 .zswd-row {
 	width: 100%;
 	height: 100%;
-	color: #121212;
+	color: #212121;
 	font-size: 16px;
-	line-height: 26px;
+	line-height: 24px;
 	display: inline-flex;
-	padding: 12px 0;
+	padding: 18px 0;
 	border-bottom: 1px dotted #ccc;
 }
 
 .zswd-left {
 	color: #fff;
 	float: left;
-	height: 46px;
-	min-width: 47px;
+	height: 42px;
+	min-width: 42px;
 	font-size: 12px;
 	text-align: center;
 	background-color: #409eff;
-	border-radius: 23px;
-	line-height: 46px;
+	border-radius: 50%;
+	line-height: 44px;
+	user-select: none;
 }
 
 .zswd-right {
@@ -142,6 +143,16 @@ body, html {
 	text-align:justify;
 	word-wrap:break-word;
 	word-break:break-all;
+}
+
+.zswd-right p {
+	color: #555;
+	font-size: 15px;
+	display: initial;
+}
+
+.zswd-title {
+	display: inline;
 }
 
 label.error {
@@ -177,9 +188,8 @@ label.error {
 }
 
 .btn:disabled {
-	opacity: 0.75;
+	opacity: 0.5;
 	cursor: default;
-	box-shadow: inset 0 0 1px 1px #fff;
 }
 
 .bg-color1 {
@@ -201,5 +211,3 @@ label.error {
 .bg-color5 {
 	background-color: rgb(238,194,126);
 }
-
-

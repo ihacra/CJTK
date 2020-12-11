@@ -1,5 +1,5 @@
 // 提示窗口
-function toast1(content, autoClose) {
+function toast(content, autoClose) {
 	var type = "toast-success";
 	if (content.indexOf("失败") != -1) {
 		type = "toast-error";
@@ -9,7 +9,7 @@ function toast1(content, autoClose) {
 	toastClose.click(function() {$('.toast-area').fadeOut('slow');});
 	toast.append(toastClose);
 	$("body").append(toast);
-	$(".toast-area").slideDown("slow");
+	$(".toast-area").fadeIn("slow");
 	if (autoClose == null || autoClose) {
 		setTimeout(function() {
 			$(".toast-area").fadeOut("slow");
@@ -19,7 +19,7 @@ function toast1(content, autoClose) {
 
 // 弹出确认对话框
 // settings = {trigger, title, content, confirm, cancel}
-function dialog2(settings) {
+function dialog(settings) {
 	if (settings.trigger != null) $("#"+settings.trigger).attr("disabled", true);
 	if (settings.title == null) settings.title = "信息";
 	var dialogId = "dialog-"+new Date().getTime();
@@ -41,9 +41,10 @@ function dialog2(settings) {
 	dialog.append(dialogCancel);
 	var dialogConfirm = $("<div class='dialog-area-btn btn-confirm btn'>确认</div>")
 	dialogConfirm.click(function() {
-		settings.confirm(); 
-		$("#"+dialogId).remove(); 
-		if (settings.trigger != null) $("#"+settings.trigger).attr("disabled", false);
+		if (!settings.confirm()) {
+			$("#"+dialogId).remove(); 
+			if (settings.trigger != null) $("#"+settings.trigger).attr("disabled", false);
+		}
 	});
 	dialog.append(dialogConfirm);
 	$("body").append(dialog);

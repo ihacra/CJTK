@@ -15,7 +15,7 @@ import com.hacra.cjtk.commons.util.StringUtils;
  * @date 2020-11-10
  */
 @Transactional(readOnly = true)
-public abstract class BaseService<D extends BaseDao<T>, T extends BaseEntity> {
+public abstract class BaseService<D extends BaseDao<T>, T extends BaseEntity<T>> {
 
 	@Autowired
 	protected D dao;
@@ -45,6 +45,19 @@ public abstract class BaseService<D extends BaseDao<T>, T extends BaseEntity> {
 	 */
 	public List<T> findList(T entity) {
 		return dao.findList(entity);
+	}
+	
+	/**
+	 * 分页查询
+	 * @param page
+	 * @param entity
+	 * @return
+	 */
+	public Page<T> findPage(Page<T> page, T entity) {
+		page.setCount(dao.getCount(entity));
+		entity.setPage(page);
+		page.setList(dao.findPage(entity));
+		return page;
 	}
 	
 	/**

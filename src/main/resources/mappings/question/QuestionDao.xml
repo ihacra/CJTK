@@ -4,6 +4,7 @@
 
 	<sql id="questionColumns">
 		a.id AS "id",
+		a.code AS "code",
 		a.title AS "title",
 		a.option_a AS "optionA",
 		a.option_b AS "optionB",
@@ -32,12 +33,37 @@
 		<where>
 			a.del_flag = #{DEL_FLAG_NORMAL}
 		</where>
-		ORDER BY a.update_date DESC
+		ORDER BY a.code, a.update_date DESC
+	</select>
+	
+	<select id="findPage" resultType="Question">
+		SELECT
+		<include refid="questionColumns"/>
+		FROM question a
+		<where>
+			a.del_flag = #{DEL_FLAG_NORMAL}
+			<if test="title != null and title != ''">
+				AND (a.title LIKE concat('%',#{title},'%') or a.code LIKE concat('%',#{title},'%'))
+			</if>
+		</where>
+		ORDER BY a.code, a.update_date DESC
+		LIMIT ${(page.pageNo-1)*page.pageSize}, #{page.pageSize}
+	</select>
+	
+	<select id="getCount" resultType="Integer">
+		SELECT count(1) FROM question a
+		<where>
+			a.del_flag = #{DEL_FLAG_NORMAL}
+			<if test="title != null and title != ''">
+				AND (a.title LIKE concat('%',#{title},'%') or a.code LIKE concat('%',#{title},'%'))
+			</if>
+		</where>
 	</select>
 
 	<insert id="insert">
 		INSERT INTO question (
 			id,
+			code,
 			title,
 			option_a,
 			option_b,
@@ -52,6 +78,7 @@
 			del_flag
 		) VALUES (
 			#{id},
+			#{code},
 			#{title},
 			#{optionA},
 			#{optionB},

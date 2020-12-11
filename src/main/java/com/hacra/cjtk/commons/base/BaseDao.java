@@ -25,6 +25,20 @@ public interface BaseDao<T> {
 	public List<T> findList(T entity);
 	
 	/**
+	 * 分页查询
+	 * @param entity
+	 * @return
+	 */
+	public List<T> findPage(T entity);
+	
+	/**
+	 * 获取总数量
+	 * @param entity
+	 * @return
+	 */
+	public int getCount(T entity);
+	
+	/**
 	 * 插入数据
 	 * @param entity
 	 * @return

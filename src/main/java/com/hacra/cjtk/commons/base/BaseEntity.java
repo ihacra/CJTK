@@ -9,7 +9,7 @@ import java.util.Date;
  * @author Hacra
  * @date 2020-11-10
  */
-public abstract class BaseEntity implements Serializable {
+public abstract class BaseEntity<T> implements Serializable {
 
 	private static final long serialVersionUID = 1L;
 	
@@ -17,6 +17,7 @@ public abstract class BaseEntity implements Serializable {
 	private Date createDate;	// 创建日期
 	private Date updateDate;	// 更新日期
 	private String delFlag;		// 删除标记（0：正常；1：删除）
+	private Page<T> page;		// 分页
 	public static final String DEL_FLAG_NORMAL = "0";
 	public static final String DEL_FLAG_DELETE = "1";
 	
@@ -60,6 +61,14 @@ public abstract class BaseEntity implements Serializable {
 		this.updateDate = updateDate;
 	}
 
+	public Page<T> getPage() {
+		return page;
+	}
+
+	public void setPage(Page<T> page) {
+		this.page = page;
+	}
+
 	@Override
 	public boolean equals(Object obj) {
 		if (obj == null) {
@@ -71,7 +80,7 @@ public abstract class BaseEntity implements Serializable {
 		if (!this.getClass().equals(obj.getClass())) {
 			return false;
 		}
-		BaseEntity that = (BaseEntity) obj;
+		BaseEntity<?> that = (BaseEntity<?>) obj;
 		return this.getId() == null ? false : this.getId().equals(that.getId());
 	}
 }

@@ -25,21 +25,13 @@
 	
 	// 提交表单
 	function btnSaveOnclick() {
-		dialog2({
+		dialog({
 			trigger: "btnSave",
 			content: "是否确认提交？",
 			confirm: function() {
 				$("#inputForm").submit();
 			}
 		});
-	}
-	
-	// 返回上一页
-	function btnBackOnclick() {
-		var path = $("#path").val();
-		if (path == "zswd") {
-			window.location.href = "/zswd/?id=" + $("#id").val();
-		}
 	}
 	
 	// 类型为选择题时显示ABCD选项输入框
@@ -112,7 +104,7 @@
 				<div class="zswd-row zswd-end">
 					<div class="btn-group">
 						<button id="btnSave" class="bg-color2" type="button" onclick="btnSaveOnclick()">保存</button>
-						<button id="btnBack" class="bg-color1" type="button" onclick="btnBackOnclick()">返回</button>
+						<button class="bg-color1" type="button" onclick="history.go(-1)">返回</button>
 					</div>
 				</div>
 			</div>

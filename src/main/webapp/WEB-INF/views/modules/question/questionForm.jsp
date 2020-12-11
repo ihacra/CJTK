@@ -5,6 +5,15 @@
 <head>
 <%@ include file="/WEB-INF/views/include/head.jsp"%>
 <title>会计题库</title>
+<style>
+	.btnExcel {
+		opacity: 0;
+	}
+	
+	.btnExcel:hover {
+		opacity: 1;
+	}
+</style>
 <script>
 	$(document).ready(function() {
 		$(".guide-item").removeClass("active");
@@ -25,13 +34,40 @@
 	
 	// 提交表单
 	function btnSaveOnclick() {
-		dialog2({
+		dialog({
 			trigger: "btnSave",
 			content: "是否确认提交？",
 			confirm: function() {
 				$("#inputForm").submit();
 			}
 		});
+	}
+	
+	// 导入方法
+	function btnImportOnclick() {
+		$("#btnImport").css("opacity", "0.5");
+		dialog({
+			trigger: "btnImport",
+			content: $("#importFormTemplate").html(),
+			cancel: function() {
+				$("#btnImport").removeAttr("style");
+			},
+			confirm: function() {
+				if ($("#importForm").valid()) {
+					$("#importForm").submit();
+					$("#btnImport").removeAttr("style");
+					return false;
+				} else {
+					$("#btnImport").removeAttr("style");
+					return true;
+				}
+			}
+		});
+	}
+	
+	// 导出方法
+	function btnExportOnclick() {
+		
 	}
 	
 	// 类型为选择题时显示ABCD选项输入框
@@ -102,11 +138,18 @@
 				</div>
 				<div class="zswd-row zswd-end">
 					<div class="btn-group">
+						<button id="btnImport" class="bg-color1 btnExcel" type="button" onclick="btnImportOnclick()">导入</button>
 						<button id="btnSave" class="bg-color2" type="button" onclick="btnSaveOnclick()">保存</button>
+						<button id="btnExport" class="bg-color1 btnExcel" type="button" onclick="btnExportOnclick()">导出</button>
 					</div>
 				</div>
 			</div>
 		</form:form>
+		<script type="text/html" id="importFormTemplate">
+			<form id="importForm" action="/question/importExcel" method="post" enctype="multipart/form-data">
+				<input id="file" name="file" type="file" accept=".xlsx" class="required" style="width:298px; border: none;"/>
+			</form>
+		</script>
 	</div>
 </body>
 </html>

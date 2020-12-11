@@ -17,7 +17,8 @@ import com.hacra.cjtk.modules.question.service.QuestionService;
 @Service
 public class ZswdService {
 
-
+	private long lastUpdateTime = 0;	// 上次更新时间
+	private List<String> idList;		// 随机ID数组
 	@Autowired
 	private QuestionService questionService;
 	
@@ -27,14 +28,28 @@ public class ZswdService {
 	 * @return
 	 */
 	public List<String> randomQuestionIdList() {
-		List<String> idList = questionService.getIdList();
+		long curTime = System.currentTimeMillis();
+		if (idList != null && curTime - lastUpdateTime < 600000) {
+			return idList;
+		}
+		idList = questionService.getIdList();
 		Random random = new Random();
-		for (int i = 0; i<<1 < idList.size(); i++) {
+		int n = idList.size() / 2;
+		for (int i = 0; i < n; i++) {
 			int j = random.nextInt(idList.size());
 			String tempId = idList.get(i);
 			idList.set(i, idList.get(j));
 			idList.set(j, tempId);
 		}
+		lastUpdateTime = System.currentTimeMillis();
+		return idList;
+	}
+	
+	/**
+	 * 获取问题id列表
+	 * @return
+	 */
+	public List<String> getIdList() {
 		return idList;
 	}
 }

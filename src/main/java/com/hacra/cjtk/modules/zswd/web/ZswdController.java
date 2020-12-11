@@ -26,8 +26,6 @@ import com.hacra.cjtk.modules.zswd.service.ZswdService;
 @RequestMapping("zswd")
 public class ZswdController extends BaseController {
 
-	// 随机ID数组
-	private List<String> idList;
 	@Autowired
 	private ZswdService zswdService;
 	@Autowired
@@ -35,14 +33,7 @@ public class ZswdController extends BaseController {
 	
 	@ModelAttribute
 	public Question get(@RequestParam(required = false) String id) {
-		Question question = null;
-		if (StringUtils.isNotBlank(id)) {
-			question = questionService.get(id);
-		} 
-		if (question == null) {
-			question = new Question();
-		}
-		return question;
+		return questionService.get(id);
 	}
 	
 	/**
@@ -51,7 +42,7 @@ public class ZswdController extends BaseController {
 	 */
 	@RequestMapping({"view", ""})
 	public String view(Question question, Model model) {
-		idList = zswdService.randomQuestionIdList();
+		List<String> idList = zswdService.randomQuestionIdList();
 		if (StringUtils.isBlank(question.getId())) {
 			question = questionService.get(String.valueOf(idList.get(0)));
 		}
@@ -69,10 +60,10 @@ public class ZswdController extends BaseController {
 	@RequestMapping("show")
 	public Question show(int index) {
 		Question question = null;
-		if (index < 0 || index >= idList.size()) {
+		if (index < 0 || index >= zswdService.getIdList().size()) {
 			question = new Question();
 		} else {
-			question = questionService.get(String.valueOf(idList.get(index)));
+			question = questionService.get(String.valueOf(zswdService.getIdList().get(index)));
 		}
 		return question;
 	}

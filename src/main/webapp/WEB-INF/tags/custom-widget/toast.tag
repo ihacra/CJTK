@@ -14,7 +14,7 @@
 		<div class="toast-close" onclick="$('.toast-area').fadeOut('slow');">×</div>
 	</div>
 	<script>
-		$(".toast-area").slideDown("slow");
+		$(".toast-area").fadeIn("slow");
 		if ("${autoClose}" != "false") {
 			setTimeout(function() {
 				$(".toast-area").fadeOut("slow");

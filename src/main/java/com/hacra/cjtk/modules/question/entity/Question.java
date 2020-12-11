@@ -2,6 +2,7 @@ package com.hacra.cjtk.modules.question.entity;
 
 import com.hacra.cjtk.commons.base.BaseEntity;
 import com.hacra.cjtk.commons.util.StringUtils;
+import com.hacra.cjtk.commons.util.excel.ExcelField;
 
 /**
  * entity
@@ -9,10 +10,11 @@ import com.hacra.cjtk.commons.util.StringUtils;
  * @author Hacra
  * @date 2020-11-10
  */
-public class Question extends BaseEntity {
+public class Question extends BaseEntity<Question> {
 
 	private static final long serialVersionUID = 1L;
 	
+	private String code;		// 编号
 	private String title;		// 题目
 	private String optionA;		// 选项A
 	private String optionB;		// 选项B
@@ -31,6 +33,15 @@ public class Question extends BaseEntity {
 		super(id);
 	}
 
+	public String getCode() {
+		return code;
+	}
+
+	public void setCode(String code) {
+		this.code = code;
+	}
+
+	@ExcelField(title = "题目", sort = 10, groups = {1, 2})
 	public String getTitle() {
 		return title;
 	}
@@ -39,6 +50,7 @@ public class Question extends BaseEntity {
 		this.title = title;
 	}
 
+	@ExcelField(title = "选项A", sort = 20, groups = {1})
 	public String getOptionA() {
 		return optionA;
 	}
@@ -47,6 +59,7 @@ public class Question extends BaseEntity {
 		this.optionA = optionA;
 	}
 
+	@ExcelField(title = "选项B", sort = 30, groups = {1})
 	public String getOptionB() {
 		return optionB;
 	}
@@ -55,6 +68,7 @@ public class Question extends BaseEntity {
 		this.optionB = optionB;
 	}
 
+	@ExcelField(title = "选项C", sort = 40, groups = {1})
 	public String getOptionC() {
 		return optionC;
 	}
@@ -63,6 +77,7 @@ public class Question extends BaseEntity {
 		this.optionC = optionC;
 	}
 
+	@ExcelField(title = "选项D", sort = 50, groups = {1})
 	public String getOptionD() {
 		return optionD;
 	}
@@ -71,6 +86,7 @@ public class Question extends BaseEntity {
 		this.optionD = optionD;
 	}
 
+	@ExcelField(title = "答案", sort = 60, groups = {1, 2})
 	public String getAnswer() {
 		return answer;
 	}
@@ -79,6 +95,7 @@ public class Question extends BaseEntity {
 		this.answer = answer;
 	}
 
+	@ExcelField(title = "解析", sort = 70, groups = {1, 2})
 	public String getAnalysis() {
 		return StringUtils.isBlank(analysis) ? "无" : analysis;
 	}
@@ -87,6 +104,7 @@ public class Question extends BaseEntity {
 		this.analysis = analysis;
 	}
 
+	@ExcelField(title = "标签", sort = 80, groups = {1, 2})
 	public String getLabel() {
 		return StringUtils.isBlank(label) ? "无" : label;
 	}
