@@ -1,7 +1,5 @@
 <%@ page contentType="text/html;charset=UTF-8" %>
 <!DOCTYPE html>
-<div class="bg-cover"></div>
-<div class="bg-image"></div>
 <div class="content-guide">
 	<div class="guide-container">
 		<div class="menu-container">

@@ -90,5 +90,6 @@
 			</div>
 		</div>
 	</div>
+	<%@ include file="/WEB-INF/views/include/bottom.jsp"%>
 </body>
 </html>

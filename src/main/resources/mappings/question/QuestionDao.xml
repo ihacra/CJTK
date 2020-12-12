@@ -32,6 +32,9 @@
 		FROM question a
 		<where>
 			a.del_flag = #{DEL_FLAG_NORMAL}
+			<if test="type != null and type != ''">
+				AND a.type = #{type}
+			</if>
 		</where>
 		ORDER BY a.code, a.update_date DESC
 	</select>
@@ -42,6 +45,9 @@
 		FROM question a
 		<where>
 			a.del_flag = #{DEL_FLAG_NORMAL}
+			<if test="type != null and type != ''">
+				AND a.type = #{type}
+			</if>
 			<if test="title != null and title != ''">
 				AND (a.title LIKE concat('%',#{title},'%') or a.code LIKE concat('%',#{title},'%'))
 			</if>
@@ -54,6 +60,9 @@
 		SELECT count(1) FROM question a
 		<where>
 			a.del_flag = #{DEL_FLAG_NORMAL}
+			<if test="type != null and type != ''">
+				AND a.type = #{type}
+			</if>
 			<if test="title != null and title != ''">
 				AND (a.title LIKE concat('%',#{title},'%') or a.code LIKE concat('%',#{title},'%'))
 			</if>

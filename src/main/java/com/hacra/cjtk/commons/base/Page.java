@@ -15,7 +15,7 @@ import com.hacra.cjtk.commons.util.StringUtils;
 public class Page<T> {
 	
 	private int pageNo = 1;		// 当前页码
-	private int pageSize = 5;	// 页面大小
+	private int pageSize = 10;	// 页面大小
 	private int count;			// 总记录数
 	private int totalPage;		// 总页数
 	private List<T> list;		// 数据集合

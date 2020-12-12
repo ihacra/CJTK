@@ -108,6 +108,6 @@ public class QuestionController extends BaseController {
 		} catch (Exception e) {
 			addMessage(redirectAttributes, "会计题目导入失败!");
 		}
-		return "redirect:/question/";
+		return "redirect:/zswd/";
 	}
 }

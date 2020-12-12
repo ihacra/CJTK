@@ -71,22 +71,18 @@ a {
 
 /* textarea start */
 textarea {
-	width: 620px;
-	min-width: 300px;
-	min-height: 20px;
-	max-width: 620px;
-	max-height: 150px;
-	line-height: 24px;
-	padding: 5px 8px;
+	width: 690px;
+	line-height: 1.6;
+	padding: 4px 6px;
 	border-radius: 4px;
-	font-size: 15px;
+	font-size: 14px;
 	outline: none;
-	color: #3a3a3a;
-	border: 1px solid #999;
-    margin-bottom: -7px;
+	color: #222;
+	border: 1px solid #bbb;
     background: #fff;
     resize: none;
-	font-family: "Microsoft YaHei","微软雅黑",Arial,sans-serif;
+    margin-bottom: -6px;
+	font-family: -apple-system,BlinkMacSystemFont,SF UI Text,Helvetica Neue,PingFang SC,Hiragino Sans GB,Microsoft YaHei UI,Microsoft YaHei,Arial,sans-serif;
 }
 
 textarea:focus {
@@ -100,7 +96,7 @@ textarea:focus {
 
 .textarea-count {
 	position: absolute;
-    bottom: 2px;
+    bottom: 4px;
     right: 10px;
     color: #666;
     font-size: 12px;
@@ -110,16 +106,16 @@ textarea:focus {
 
 /* input start */
 input {
-	width: 380px;
-	line-height: 26px;
-	padding: 3px 6px;
+	width: 390px;
+	line-height: 1.6;
+	padding: 3px 5px;
 	border-radius: 4px;
-	font-size: 15px;
+	font-size: 14px;
 	outline: none;
-	color: #3a3a3a;
+	color: #222;
 	background: #fff;
-	border: 1px solid #999;
-	font-family: "Microsoft YaHei","微软雅黑",Arial,sans-serif;
+	border: 1px solid #bbb;
+	font-family: -apple-system,BlinkMacSystemFont,SF UI Text,Helvetica Neue,PingFang SC,Hiragino Sans GB,Microsoft YaHei UI,Microsoft YaHei,Arial,sans-serif;
 }
 
 input:focus {
@@ -133,7 +129,7 @@ input:focus {
 
 .input-count {
 	position: absolute;
-    bottom: 2px;
+    bottom: 3px;
     right: 8px;
     color: #666;
     font-size: 12px;
@@ -154,30 +150,32 @@ button {
 	color: #fff;
 	border: 0;
 	height: 34px;
-	min-width: 65px;
+	min-width: 76px;
 	font-size: 14px;
 	text-align: center;
-	border-radius: 20px;
-	line-height: 100%;
-	padding: 0 24px;
+	border-radius: 17px;
+	padding: 0 22px;
 	cursor: pointer;
 	outline: none;
-	font-weight: bold;
     letter-spacing: 1px;
     user-select: none;
 }
 
-button:hover {
-	opacity: 0.85;
+.btn {
+	cursor: pointer;
 }
 
-button:active {
+.btn:hover, button:hover {
+	opacity: 0.88;
+}
+
+.btn:active, button:active {
 	opacity: 0.75;
-	box-shadow: inset 0 0 1px 1px #fff;
 }
 
-button:disabled {
+.btn:disabled, button:disabled {
 	opacity: 0.5;
 	cursor: default;
 }
+
 /* button end */

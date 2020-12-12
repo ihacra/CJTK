@@ -11,7 +11,7 @@
 <div class="textarea-area">
 	<textarea name="${name}" rows="${rows}" maxlength="${maxlength}" class="${classStyle}" placeholder="${placeholder}">${value}</textarea>
 	<div class="textarea-count">
-		<span data-v="${name}">${fn:length(value)}</span> / ${maxlength}
+		<span data-v="${name}">${fn:length(value)}</span>/${maxlength}
 	</div>
 </div>
 <c:if test="${fn:contains(classStyle, 'required')}">

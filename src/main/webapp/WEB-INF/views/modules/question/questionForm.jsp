@@ -30,6 +30,10 @@
                 }
             }
 		});
+		// 若参数为import时进入页面后直接弹出导入弹窗
+		if (window.location.search == "?import") {
+			btnImportOnclick();
+		} 
 	});
 	
 	// 提交表单
@@ -48,6 +52,7 @@
 		$("#btnImport").css("opacity", "0.5");
 		dialog({
 			trigger: "btnImport",
+			title: "导入题库",
 			content: $("#importFormTemplate").html(),
 			cancel: function() {
 				$("#btnImport").removeAttr("style");
@@ -151,5 +156,6 @@
 			</form>
 		</script>
 	</div>
+	<%@ include file="/WEB-INF/views/include/bottom.jsp"%>
 </body>
 </html>

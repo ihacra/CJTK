@@ -11,7 +11,7 @@
 <div class="input-area">
 	<input id="${id}" name="${name}"  maxlength="${maxlength}" class="${classStyle}" autocomplete="off" value="${value}" placeholder="${placeholder}"/>
 	<div class="input-count">
-		<span data-v="${name}">${fn:length(value)}</span> / ${maxlength}
+		<span data-v="${name}">${fn:length(value)}</span>/${maxlength}
 	</div>
 </div>
 <c:if test="${fn:contains(classStyle, 'required')}"><div class="required-tip">*</div></c:if>
