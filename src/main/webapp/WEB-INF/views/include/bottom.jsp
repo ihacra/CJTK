@@ -9,8 +9,8 @@
 			<li>会计题库</li>
 			<li>用于记录会计考试学习过程中的习题</li>
 			<li>
-				选择题：<span style="color: #ccc;">${fns:getCountOfQuestionsByType("0")}</span>&nbsp;条<br/>
-				填空题：<span style="color: #ccc;">${fns:getCountOfQuestionsByType("1")}</span>&nbsp;条
+				选择题：<span style="color: #ccc;">${fns:getCountOfXZTQuestions()}</span>&nbsp;条<br/>
+				填空题：<span style="color: #ccc;">${fns:getCountOfTKTQuestions()}</span>&nbsp;条
 			</li>
 		</ul>
 		<ul>
@@ -23,12 +23,45 @@
 		</ul>
 		<ul>
 			<li>批量处理</li>
-			<li><a href="/question/?import">导入题库</a></li>
-			<li><a href="/question/export">导出题库</a></li>
+			<li><a href="javascript:void(0)" onclick="btnImport()">导入题库</a></li>
+			<li><a href="javascript:void(0)" onclick="btnExport()">导出题库</a></li>
 		</ul>
 		<div class="copyright">
 			<jsp:useBean id="now" class="java.util.Date"/>
 			Copyright © <fmt:formatDate value="${now}" pattern="yyyy"/> Hacra. All rights reserved.
 		</div>
 	</div>
+	<script>
+		// 导入方法
+		function btnImport() {
+			dialog({
+				title: "导入题库",
+				content: $("#importFormTemplate").html(),
+				confirm: function() {
+					if ($("#importForm").valid()) {
+						$("#importForm").submit();
+						return false;
+					} else {
+						return true;
+					}
+				}
+			});
+		}
+		
+		// 导出方法
+		function btnExport() {
+			dialog({
+				title: "导出题库",
+				content: "是否确认导出全部题库？",
+				confirm: function() {
+					window.location.href = "/question/exportExcel";
+				}
+			});
+		}
+	</script>
+	<script type="text/html" id="importFormTemplate">
+		<form id="importForm" action="/question/importExcel" method="post" enctype="multipart/form-data">
+			<input id="file" name="file" type="file" accept=".xlsx" class="required" style="width:298px; border: none;"/>
+		</form>
+	</script>
 </div>

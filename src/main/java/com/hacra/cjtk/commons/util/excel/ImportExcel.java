@@ -89,7 +89,7 @@ public class ImportExcel {
 	 */
 	public <T> List<T> getDataList(Class<T> clazz, int group) throws InstantiationException, IllegalAccessException {
 		List<Object[]> annotationList = getAnnotationList(clazz, group);
-		List<T> dataList = new ArrayList<>();
+		List<T> dataList = new ArrayList<>(64);
 		int lastRowNum = this.sheet.getLastRowNum();
 		for (int i = this.dataNum; i <= lastRowNum; i++) {
 			T entity = clazz.newInstance();
@@ -131,7 +131,7 @@ public class ImportExcel {
 	 * @return
 	 */
 	private <T> List<Object[]> getAnnotationList(Class<T> clazz, int group) {
-		List<Object[]> annotationList = new ArrayList<>();
+		List<Object[]> annotationList = new ArrayList<>(16);
 		Method[] methods = clazz.getDeclaredMethods();
 		for (Method method : methods) {
 			ExcelField excelField = method.getAnnotation(ExcelField.class);
@@ -163,7 +163,7 @@ public class ImportExcel {
 	 * @param colNum
 	 * @return
 	 */
-	public Object getCellValue(Row row, int colNum) {
+	private Object getCellValue(Row row, int colNum) {
 		Object val = null;
 		Cell cell = row.getCell(colNum);
 		if (cell != null) {

@@ -2,6 +2,9 @@ package com.hacra.cjtk.modules.question.web;
 
 import java.util.List;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -12,6 +15,7 @@ import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.hacra.cjtk.commons.base.BaseController;
+import com.hacra.cjtk.commons.util.excel.ExportExcel;
 import com.hacra.cjtk.commons.util.excel.ImportExcel;
 import com.hacra.cjtk.modules.question.entity.Question;
 import com.hacra.cjtk.modules.question.service.QuestionService;
@@ -109,5 +113,19 @@ public class QuestionController extends BaseController {
 			addMessage(redirectAttributes, "会计题目导入失败!");
 		}
 		return "redirect:/zswd/";
+	}
+	
+	/**
+	 * 导出Excel
+	 * @param question
+	 * @return
+	 */
+	@RequestMapping("exportExcel")
+	public String exportExcel(Question question, HttpServletRequest request, HttpServletResponse response, RedirectAttributes redirectAttributes) {
+		question.setType("0");
+		List<Question> list = questionService.findList(question);
+		ExportExcel exportExcel = new ExportExcel("会计题库（选择题）", Question.class, 1);
+		exportExcel.setDataList(list).write(request, response, "会计题库.xlsx");
+		return null;
 	}
 }

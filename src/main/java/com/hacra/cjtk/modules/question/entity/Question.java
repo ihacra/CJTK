@@ -1,7 +1,6 @@
 package com.hacra.cjtk.modules.question.entity;
 
 import com.hacra.cjtk.commons.base.BaseEntity;
-import com.hacra.cjtk.commons.util.StringUtils;
 import com.hacra.cjtk.commons.util.excel.ExcelField;
 
 /**
@@ -97,7 +96,7 @@ public class Question extends BaseEntity<Question> {
 
 	@ExcelField(title = "解析", sort = 70, groups = {1, 2})
 	public String getAnalysis() {
-		return StringUtils.isBlank(analysis) ? "无" : analysis;
+		return analysis;
 	}
 
 	public void setAnalysis(String analysis) {
@@ -106,7 +105,7 @@ public class Question extends BaseEntity<Question> {
 
 	@ExcelField(title = "标签", sort = 80, groups = {1, 2})
 	public String getLabel() {
-		return StringUtils.isBlank(label) ? "无" : label;
+		return label;
 	}
 
 	public void setLabel(String label) {

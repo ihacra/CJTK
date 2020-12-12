@@ -59,7 +59,7 @@
 			<c:forEach items="${page.list}" var="question" varStatus="vs">
 				<c:if test="${question.type eq '0'}">
 					<div class="zswd-row">
-						<div class="zswd-left bg-color${(vs.index%5)+1}" onclick="btnView('${question.id}')" title="查看问题">${question.code}</div>
+						<div class="zswd-left bg-color${(vs.index%5)+1} btn" onclick="btnView('${question.id}')" title="查看问题">${question.code}</div>
 						<div class="zswd-right">
 							<div class="zswd-title btn" onclick="btnShow('${question.id}')" title="显示答案">${question.title}</div>
 							<p><br/>A. ${question.optionA}
@@ -76,7 +76,7 @@
 				</c:if>
 				<c:if test="${question.type eq '1'}">
 					<div class="zswd-row">
-						<div class="zswd-left bg-color${(vs.index%5)+1}" onclick="btnView('${question.id}')" title="查看问题">${question.code}</div>
+						<div class="zswd-left bg-color${(vs.index%5)+1} btn" onclick="btnView('${question.id}')" title="查看问题">${question.code}</div>
 						<div class="zswd-right">
 							<div class="zswd-title btn" onclick="btnShow('${question.id}')" title="显示答案">${question.title}</div>
 							<div id="${question.id}" data-v="an" style="display: none; margin-top: 4px; color: sienna;">
