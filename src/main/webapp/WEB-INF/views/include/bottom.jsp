@@ -8,10 +8,6 @@
 		<ul>
 			<li>会计题库</li>
 			<li>用于记录会计考试学习过程中的习题</li>
-			<li>
-				选择题：<span style="color: #ccc;">${fns:getCountOfXZTQuestions()}</span>&nbsp;条<br/>
-				填空题：<span style="color: #ccc;">${fns:getCountOfTKTQuestions()}</span>&nbsp;条
-			</li>
 		</ul>
 		<ul>
 			<li>知识问答</li>
@@ -23,6 +19,7 @@
 		</ul>
 		<ul>
 			<li>批量处理</li>
+			<li><a href="/question/">添加题库</a></li>
 			<li><a href="javascript:void(0)" onclick="btnImport()">导入题库</a></li>
 			<li><a href="javascript:void(0)" onclick="btnExport()">导出题库</a></li>
 		</ul>

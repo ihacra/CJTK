@@ -1,9 +1,12 @@
 package com.hacra.cjtk.modules.question.utils;
 
-import com.hacra.cjtk.commons.cache.CacheManager;
-import com.hacra.cjtk.commons.util.SpringContextUtils;
-import com.hacra.cjtk.modules.question.dao.QuestionDao;
-import com.hacra.cjtk.modules.question.entity.Question;
+import java.util.LinkedHashMap;
+import java.util.Map;
+
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+
+import com.hacra.cjtk.commons.cache.CookieManager;
 
 /**
  * QuestionUtils
@@ -13,41 +16,54 @@ import com.hacra.cjtk.modules.question.entity.Question;
  */
 public class QuestionUtils {
 
-	public static final String QU_COUNT_XZT_NAME = "QU_COUNT_0";		// 选择题问题数量缓存名称
-	public static final String QU_COUNT_TKT_NAME = "QU_COUNT_1";		// 填空题问题数量缓存名称
-	private static QuestionDao questionDao = SpringContextUtils.getBean(QuestionDao.class);
+	private static Map<String, String> subjectMap;				// 题库科目Map
+	public static final String SUBJECT_VAL = "SUBJECT_VAL";		// 题库科目名称
+	public static final String SUBJECT_KEY = "SUBJECT_KEY";		// 题库科目键值
 	
 	/**
-	 * 获取当前选择题题库数量
-	 * @param type 问题类型
+	 * 获取题库科目
 	 * @return
 	 */
-	public static int getCountOfXZTQuestions() {
-		CacheManager cacheManager = CacheManager.getInstance();
-		if (cacheManager.getCache(QU_COUNT_XZT_NAME) == null) {
-			Question question = new Question();
-			question.setType("0");
-			int val = questionDao.getCount(question);
-			cacheManager.addCache(QU_COUNT_XZT_NAME, val);
-			return val;
+	public static Map<String, String> getSubjectMap() {
+		if (subjectMap == null) {
+			subjectMap = new LinkedHashMap<>(8);
+			subjectMap.put("0", "基础会计学");
+			subjectMap.put("1", "消费经济学");
 		}
-		return (int) cacheManager.getCache(QU_COUNT_XZT_NAME);
+		return subjectMap;
 	}
 	
 	/**
-	 * 获取当前填空题题库数量
-	 * @param type 问题类型
+	 * 获取题库科目名称
 	 * @return
 	 */
-	public static int getCountOfTKTQuestions() {
-		CacheManager cacheManager = CacheManager.getInstance();
-		if (cacheManager.getCache(QU_COUNT_TKT_NAME) == null) {
-			Question question = new Question();
-			question.setType("1");
-			int val = questionDao.getCount(question);
-			cacheManager.addCache(QU_COUNT_TKT_NAME, val);
-			return val;
-		}
-		return (int) cacheManager.getCache(QU_COUNT_TKT_NAME);
+	public static String getSubjectVal(HttpServletRequest request) {
+		return CookieManager.getInstance().getCookie(request, SUBJECT_VAL);
+	}
+	
+	/**
+	 * 获取题库科目键值
+	 * @return
+	 */
+	public static String getSubjectKey(HttpServletRequest request) {
+		return CookieManager.getInstance().getCookie(request, SUBJECT_KEY);
+	}
+	
+	/**
+	 * 存储题库科目名称
+	 * @param request
+	 * @param val
+	 */
+	public static void setSubjectVal(HttpServletResponse response, String val) {
+		CookieManager.getInstance().setCookie(response, SUBJECT_VAL, val);
+	}
+	
+	/**
+	 * 存储题库科目键值
+	 * @param request
+	 * @param val
+	 */
+	public static void setSubjectKey(HttpServletResponse response, String val) {
+		CookieManager.getInstance().setCookie(response, SUBJECT_KEY, val);
 	}
 }

@@ -1,4 +1,4 @@
-package com.hacra.cjtk.commons.util;
+package com.hacra.cjtk.commons.cache;
 
 import java.io.UnsupportedEncodingException;
 import java.net.URLDecoder;
@@ -9,20 +9,49 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 /**
- * CookieUtils
+ * CookieManager
  * 
  * @author Hacra
  * @date 2020-12-07
  */
-public class CookieUtils {
+public class CookieManager {
 
+	private volatile static CookieManager cookieManager;
+	
+	private CookieManager() {}
+	
+	/**
+	 * 获取唯一实例化对象
+	 * @return
+	 */
+	public static CookieManager getInstance() {
+		if (cookieManager == null) {
+			synchronized(CookieManager.class) {
+				if (cookieManager == null) {
+					cookieManager = new CookieManager();
+				}
+			}
+		}
+		return cookieManager;
+	}
+	
 	/**
 	 * 设置 Cookie（生成时间为1天）
 	 * @param name 名称
 	 * @param value 值
 	 */
-	public static void setCookie(HttpServletResponse response, String name, String value) {
+	public void setCookie(HttpServletResponse response, String name, String value) {
 		setCookie(response, name, value, "/", 60*60*24);
+	}
+	
+	/**
+	 * 获得指定Cookie的值
+	 * @param name 名称
+	 * @return 值
+	 */
+	public String getCookie(HttpServletRequest request, String name) {
+		String val = getCookie(request, null, name, false);
+		return val == null ? "" : val;
 	}
 	
 	/**
@@ -33,7 +62,7 @@ public class CookieUtils {
 	 * @param path
 	 * @param maxAge
 	 */
-	public static void setCookie(HttpServletResponse response, String name, String value, String path, int maxAge) {
+	private void setCookie(HttpServletResponse response, String name, String value, String path, int maxAge) {
 		Cookie cookie = new Cookie(name, null);
 		cookie.setPath(path);
 		cookie.setMaxAge(maxAge);
@@ -47,22 +76,13 @@ public class CookieUtils {
 	
 	/**
 	 * 获得指定Cookie的值
-	 * @param name 名称
-	 * @return 值
-	 */
-	public static String getCookie(HttpServletRequest request, String name) {
-		return getCookie(request, null, name, false);
-	}
-	
-	/**
-	 * 获得指定Cookie的值
 	 * @param request 请求对象
 	 * @param response 响应对象
 	 * @param name 名字
 	 * @param isRemove 是否移除
 	 * @return 值
 	 */
-	public static String getCookie(HttpServletRequest request, HttpServletResponse response, String name, boolean isRemove) {
+	private String getCookie(HttpServletRequest request, HttpServletResponse response, String name, boolean isRemove) {
 		String value = null;
 		Cookie[] cookies = request.getCookies();
 		if (cookies != null) {

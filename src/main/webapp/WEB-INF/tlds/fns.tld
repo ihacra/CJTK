@@ -11,19 +11,14 @@
 	<short-name>fns</short-name>
 	<uri>http://java.sun.com/jsp/jstl/functionss</uri>
 
-	<function>
+	<!-- 
+		<function>
 		<description>获取当前选择题题库数量</description>
 		<name>getCountOfXZTQuestions</name>
 		<function-class>com.hacra.cjtk.modules.question.utils.QuestionUtils</function-class>
 		<function-signature>int getCountOfXZTQuestions()</function-signature>
 		<example>${fns:getCountOfXZTQuestions()}</example>
 	</function>
+	-->
 	
-	<function>
-		<description>获取当前填空题题库数量</description>
-		<name>getCountOfTKTQuestions</name>
-		<function-class>com.hacra.cjtk.modules.question.utils.QuestionUtils</function-class>
-		<function-signature>int getCountOfTKTQuestions()</function-signature>
-		<example>${fns:getCountOfTKTQuestions()}</example>
-	</function>
 </taglib>

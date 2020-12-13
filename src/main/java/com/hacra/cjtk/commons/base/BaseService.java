@@ -22,20 +22,11 @@ public abstract class BaseService<D extends BaseDao<T>, T extends BaseEntity<T>>
 	
 	/**
 	 * 获取单条数据
-	 * @param id
-	 * @return
-	 */
-	public T get(String id) {
-		return dao.get(id);
-	}
-	
-	/**
-	 * 获取单条数据
 	 * @param entity
 	 * @return
 	 */
 	public T get(T entity) {
-		return dao.get(entity.getId());
+		return dao.get(entity);
 	}
 	
 	/**

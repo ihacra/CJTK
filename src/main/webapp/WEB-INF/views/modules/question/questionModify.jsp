@@ -4,7 +4,7 @@
 <html>
 <head>
 <%@ include file="/WEB-INF/views/include/head.jsp"%>
-<title>会计题库</title>
+<title>${title}</title>
 <script>
 	$(document).ready(function() {
 		$(".guide-item").removeClass("active");
@@ -54,7 +54,8 @@
 	</jsp:include>
 	<div class="main">
 		<form:form id="inputForm" modelAttribute="question" action="/question/save" method="post">
-			<input type="hidden" id="id" name="id" value="${question.id}"/>
+			<form:hidden path="id"/>
+			<form:hidden path="subject"/>
 			<input type="hidden" id="path" name="path" value="${path}" />
 			<div class="area-zswd">
 				<div class="zswd-row">

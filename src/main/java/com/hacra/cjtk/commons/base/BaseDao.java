@@ -15,7 +15,7 @@ public interface BaseDao<T> {
 	 * @param id
 	 * @return
 	 */
-	public T get(String id);
+	public T get(T entity);
 	
 	/**
 	 * 获取多条数据

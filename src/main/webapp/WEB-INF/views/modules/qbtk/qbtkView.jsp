@@ -4,7 +4,7 @@
 <html>
 <head>
 <%@ include file="/WEB-INF/views/include/head.jsp"%>
-<title>会计题库</title>
+<title>${title}</title>
 </head>
 <head>
 <style>
@@ -52,14 +52,14 @@
 				<span class="zswd-left bg-color4">题目</span>
 				<div class="zswd-right">
 					<c:if test="${question.type eq '0'}">
-						<b>${question.code}：</b>${question.title}
+						<b>${question.id}：</b>${question.title}
 						<p><br/>A. ${question.optionA}
 						<br/>B. ${question.optionB}
 						<br/>C. ${question.optionC}
 						<br/>D. ${question.optionD}</p>
 					</c:if>
 					<c:if test="${question.type eq '1'}">
-						<b>${question.code}：</b>${question.title}
+						<b>${question.id}：</b>${question.title}
 					</c:if>
 				</div>
 			</div>

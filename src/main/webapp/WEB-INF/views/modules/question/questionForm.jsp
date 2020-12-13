@@ -4,7 +4,7 @@
 <html>
 <head>
 <%@ include file="/WEB-INF/views/include/head.jsp"%>
-<title>会计题库</title>
+<title>${title}</title>
 <script>
 	$(document).ready(function() {
 		$(".guide-item").removeClass("active");

@@ -102,7 +102,11 @@ public class ImportExcel {
 					Class<?> valType = method.getReturnType();
 					try {
 						if (valType == String.class) {
-							val = val.toString();
+							String v = val.toString();
+							if(StringUtils.endsWith(v, ".0")){
+								v = StringUtils.substringBefore(v, ".0");
+							}
+							val = v;
 						} else if (valType == Integer.class) {
 							val = Double.valueOf(val.toString()).intValue();
 						} else if (valType == Long.class) {

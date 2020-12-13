@@ -20,5 +20,5 @@ public interface QuestionDao extends BaseDao<Question> {
 	 * 获取ID列表
 	 * @return
 	 */
-	public List<String> getIdList();
+	public List<String> getIdList(Question question);
 }

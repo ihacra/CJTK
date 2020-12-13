@@ -4,14 +4,12 @@
 <html>
 <head>
 <%@ include file="/WEB-INF/views/include/head.jsp"%>
-<title>会计题库</title>
+<title>${title}</title>
 </head>
 <head>
 <script>
 	$(document).ready(function() {
 		var index = 0;
-		var valiable = window.location.href.split("?")[0];
-		window.history.pushState({}, 0, valiable);
 		
 		// 上一题
 		$("#btnPre").click(function() {
@@ -50,7 +48,7 @@
 			success: function(qs) {
 				$("#id").val(qs.id);
 				if (qs.type == '0') {
-					$("#title").html("<b>"+qs.code+"：</b>"+qs.title+"<p><br/>A. "+qs.optionA+"<br/>B. "+qs.optionB+"<br/>C. "+qs.optionC+"<br/>D. "+qs.optionD+"</p>");
+					$("#title").html("<b>"+qs.id+"：</b>"+qs.title+"<p><br/>A. "+qs.optionA+"<br/>B. "+qs.optionB+"<br/>C. "+qs.optionC+"<br/>D. "+qs.optionD+"</p>");
 				} else if (qs.type == '1') {
 					$("#title").html("<b>"+qs.id+"：</b>"+qs.title);
 				}
@@ -93,14 +91,14 @@
 				<span class="zswd-left bg-color4 btn" onclick="btnEdit()" title="修改题目">题目</span>
 				<div class="zswd-right" id="title">
 					<c:if test="${question.type eq '0'}">
-						<b>${question.code}：</b>${question.title}
+						<b>${question.id}：</b>${question.title}
 						<p><br/>A. ${question.optionA}
 						<br/>B. ${question.optionB}
 						<br/>C. ${question.optionC}
 						<br/>D. ${question.optionD}</p>
 					</c:if>
 					<c:if test="${question.type eq '1'}">
-						<b>${question.code}：</b>${question.title}
+						<b>${question.id}：</b>${question.title}
 					</c:if>
 				</div>
 			</div>

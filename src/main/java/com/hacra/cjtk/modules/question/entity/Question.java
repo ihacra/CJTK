@@ -12,8 +12,7 @@ import com.hacra.cjtk.commons.util.excel.ExcelField;
 public class Question extends BaseEntity<Question> {
 
 	private static final long serialVersionUID = 1L;
-	
-	private String code;		// 编号
+	private String subject;		// 科目
 	private String title;		// 题目
 	private String optionA;		// 选项A
 	private String optionB;		// 选项B
@@ -32,12 +31,12 @@ public class Question extends BaseEntity<Question> {
 		super(id);
 	}
 
-	public String getCode() {
-		return code;
+	public String getSubject() {
+		return subject;
 	}
 
-	public void setCode(String code) {
-		this.code = code;
+	public void setSubject(String subject) {
+		this.subject = subject;
 	}
 
 	@ExcelField(title = "题目", sort = 10, groups = {1, 2})

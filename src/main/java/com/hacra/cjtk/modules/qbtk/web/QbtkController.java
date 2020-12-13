@@ -28,8 +28,8 @@ public class QbtkController extends BaseController {
 	private QuestionService questionService;
 	
 	@ModelAttribute
-	public Question get(@RequestParam(required = false) String id) {
-		return questionService.get(id);
+	public Question get(@RequestParam(required = false) String id, HttpServletRequest request) {
+		return questionService.get(id, request);
 	}
 	
 	/**
@@ -38,8 +38,12 @@ public class QbtkController extends BaseController {
 	 */
 	@RequestMapping(value = {"list", ""})
 	public String list(Question question, Model model, HttpServletRequest request) {
+		if (verification(request)) {
+			return "redirect:/";
+		}
 		Page<Question> page = questionService.findPage(new Page<Question>(request), question);
 		addAttribute(model, "page", page);
+		addTitleAttribute(model, request);
 		return "modules/qbtk/qbtkList";
 	}
 	
@@ -50,8 +54,9 @@ public class QbtkController extends BaseController {
 	 * @return
 	 */
 	@RequestMapping(value = "view")
-	public String view(Question question, Model model) {
+	public String view(Question question, Model model, HttpServletRequest request) {
 		addAttribute(model, "question", question);
+		addTitleAttribute(model, request);
 		return "modules/qbtk/qbtkView";
 	}
 }

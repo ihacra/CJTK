@@ -2,6 +2,8 @@ package com.hacra.cjtk.modules.zswd.web;
 
 import java.util.List;
 
+import javax.servlet.http.HttpServletRequest;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -32,8 +34,8 @@ public class ZswdController extends BaseController {
 	private QuestionService questionService;
 	
 	@ModelAttribute
-	public Question get(@RequestParam(required = false) String id) {
-		return questionService.get(id);
+	public Question get(@RequestParam(required = false) String id, HttpServletRequest request) {
+		return questionService.get(id, request);
 	}
 	
 	/**
@@ -41,13 +43,17 @@ public class ZswdController extends BaseController {
 	 * @return
 	 */
 	@RequestMapping({"view", ""})
-	public String view(Question question, Model model) {
-		List<String> idList = zswdService.randomQuestionIdList();
-		if (StringUtils.isBlank(question.getId())) {
-			question = questionService.get(String.valueOf(idList.get(0)));
+	public String view(Question question, Model model, HttpServletRequest request) {
+		if (verification(request)) {
+			return "redirect:/";
+		}
+		List<String> idList = zswdService.randomQuestionIdList(request);
+		if (StringUtils.isBlank(question.getId()) && !idList.isEmpty()) {
+			question = questionService.get(String.valueOf(idList.get(0)), request);
 		}
 		addAttribute(model, "question", question);
 		addAttribute(model, "length", idList.size());
+		addTitleAttribute(model, request);
 		return "modules/zswd/zswdView";
 	}
 	
@@ -58,12 +64,12 @@ public class ZswdController extends BaseController {
 	 */
 	@ResponseBody
 	@RequestMapping("show")
-	public Question show(int index) {
+	public Question show(int index, HttpServletRequest request) {
 		Question question = null;
 		if (index < 0 || index >= zswdService.getIdList().size()) {
 			question = new Question();
 		} else {
-			question = questionService.get(String.valueOf(zswdService.getIdList().get(index)));
+			question = questionService.get(String.valueOf(zswdService.getIdList().get(index)), request);
 		}
 		return question;
 	}

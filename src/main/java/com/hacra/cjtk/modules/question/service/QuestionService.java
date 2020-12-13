@@ -3,11 +3,12 @@ package com.hacra.cjtk.modules.question.service;
 import java.util.Date;
 import java.util.List;
 
+import javax.servlet.http.HttpServletRequest;
+
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.hacra.cjtk.commons.base.BaseService;
-import com.hacra.cjtk.commons.cache.CacheManager;
 import com.hacra.cjtk.commons.util.StringUtils;
 import com.hacra.cjtk.modules.question.dao.QuestionDao;
 import com.hacra.cjtk.modules.question.entity.Question;
@@ -25,41 +26,50 @@ public class QuestionService extends BaseService<QuestionDao, Question> {
 	/**
 	 * 获取问题
 	 */
-	@Override
-	public Question get(String id) {
-		Question question = null;
-		if (StringUtils.isNotBlank(id)) {
-			question = super.get(id);
-		} 
-		if (question == null) {
-			question = new Question();
-		}
-		return question;
+	public Question get(String id, HttpServletRequest request) {
+		Question question = new Question(id);
+		question.setSubject(QuestionUtils.getSubjectKey(request));
+		return StringUtils.isBlank(id) ? question : super.get(question);
+	}
+	
+	/**
+	 * 获取对应题库数量
+	 * @param question
+	 * @return
+	 */
+	public int getCount(Question question) {
+		return dao.getCount(question);
 	}
 	
 	/**
 	 * 获取ID列表
 	 * @return
 	 */
-	public List<String> getIdList() {
-		return dao.getIdList();
+	public List<String> getIdList(Question question) {
+		return dao.getIdList(question);
 	}
 	
 	/**
 	 * 保存方法
 	 */
 	@Override
-	@Transactional(readOnly = false)
+	@Deprecated
 	public void save(Question entity) {
+		super.save(entity);
+	}
+	
+	/**
+	 * 保存方法
+	 */
+	@Transactional(readOnly = false)
+	public void save(Question entity, HttpServletRequest request) {
 		formatData(entity);
 		if (StringUtils.isBlank(entity.getId())) {
 			entity.setId(dao.getNextId());
-			entity.setCode("CJ" + StringUtils.formatLength(entity.getId(), 3));
+			entity.setSubject(QuestionUtils.getSubjectKey(request));
 			entity.setCreateDate(new Date());
 			entity.setUpdateDate(entity.getCreateDate());
 			dao.insert(entity);
-			CacheManager.getInstance().removeCache(QuestionUtils.QU_COUNT_XZT_NAME);
-			CacheManager.getInstance().removeCache(QuestionUtils.QU_COUNT_TKT_NAME);
 		} else {
 			entity.setUpdateDate(new Date());
 			dao.update(entity);

@@ -19,6 +19,7 @@ import com.hacra.cjtk.commons.util.excel.ExportExcel;
 import com.hacra.cjtk.commons.util.excel.ImportExcel;
 import com.hacra.cjtk.modules.question.entity.Question;
 import com.hacra.cjtk.modules.question.service.QuestionService;
+import com.hacra.cjtk.modules.question.utils.QuestionUtils;
 
 /**
  * controller
@@ -34,8 +35,8 @@ public class QuestionController extends BaseController {
 	private QuestionService questionService;
 	
 	@ModelAttribute
-	public Question get(@RequestParam(required = false) String id) {
-		return questionService.get(id);
+	public Question get(@RequestParam(required = false) String id, HttpServletRequest request) {
+		return questionService.get(id, request);
 	}
 	
 	/**
@@ -43,7 +44,11 @@ public class QuestionController extends BaseController {
 	 * @return
 	 */
 	@RequestMapping({"form", ""})
-	public String add(Model model) {
+	public String add(Model model, HttpServletRequest request) {
+		if (verification(request)) {
+			return "redirect:/";
+		}
+		addTitleAttribute(model, request);
 		return "modules/question/questionForm";
 	}
 	
@@ -54,9 +59,10 @@ public class QuestionController extends BaseController {
 	 * @return
 	 */
 	@RequestMapping("modify")
-	public String modify(Question question, String path, Model model) {
+	public String modify(Question question, String path, Model model, HttpServletRequest request) {
 		addAttribute(model, "path", path);
 		addAttribute(model, "question", question);
+		addTitleAttribute(model, request);
 		return "modules/question/questionModify";
 	}
 	
@@ -66,8 +72,9 @@ public class QuestionController extends BaseController {
 	 * @return
 	 */
 	@RequestMapping("save")
-	public String save(Question question, String path, RedirectAttributes redirectAttributes) {
-		questionService.save(question);
+	public String save(Question question, String path, HttpServletRequest request, RedirectAttributes redirectAttributes) {
+		questionService.save(question, request);
+		addTitleAttribute(redirectAttributes, request);
 		if ("zswd".equals(path)) {
 			addMessage(redirectAttributes, "会计题目修改成功!");
 			return "redirect:/zswd/?id=" + question.getId();
@@ -76,7 +83,7 @@ public class QuestionController extends BaseController {
 			return "redirect:/qbtk/view?id=" + question.getId();
 		} else {
 			addMessage(redirectAttributes, "会计题目添加成功!");
-			return "redirect:/question/";
+			return "redirect:/zswd/?id=" + question.getId();
 		}
 	}
 	
@@ -87,9 +94,10 @@ public class QuestionController extends BaseController {
 	 * @return
 	 */
 	@RequestMapping("delete")
-	public String delete(Question question, RedirectAttributes redirectAttributes) {
+	public String delete(Question question, HttpServletRequest request, RedirectAttributes redirectAttributes) {
 		questionService.delete(question);
 		addMessage(redirectAttributes, "会计题目删除成功!");
+		addTitleAttribute(redirectAttributes, request);
 		return "redirect:/qbtk/";
 	}
 	
@@ -100,18 +108,22 @@ public class QuestionController extends BaseController {
 	 * @return
 	 */
 	@RequestMapping("importExcel")
-	public String importExcel(@RequestParam("file") MultipartFile multipartFile, RedirectAttributes redirectAttributes) {
+	public String importExcel(@RequestParam("file") MultipartFile multipartFile, HttpServletRequest request, RedirectAttributes redirectAttributes) {
+		if (verification(request)) {
+			return "redirect:/";
+		}
 		try {
 			ImportExcel importExcel = new ImportExcel(multipartFile, 0, 1);
 			List<Question> list = importExcel.getDataList(Question.class, 1);
 			for (Question question : list) {
 				question.setType("0");
-				questionService.save(question);
+				questionService.save(question, request);
 			}
 			addMessage(redirectAttributes, "会计题目导入成功：共导入"+list.size()+"条！");
 		} catch (Exception e) {
 			addMessage(redirectAttributes, "会计题目导入失败!");
 		}
+		addTitleAttribute(redirectAttributes, request);
 		return "redirect:/zswd/";
 	}
 	
@@ -122,10 +134,13 @@ public class QuestionController extends BaseController {
 	 */
 	@RequestMapping("exportExcel")
 	public String exportExcel(Question question, HttpServletRequest request, HttpServletResponse response, RedirectAttributes redirectAttributes) {
+		if (verification(request)) {
+			return "redirect:/";
+		}
 		question.setType("0");
 		List<Question> list = questionService.findList(question);
-		ExportExcel exportExcel = new ExportExcel("会计题库（选择题）", Question.class, 1);
-		exportExcel.setDataList(list).write(request, response, "会计题库.xlsx");
+		ExportExcel exportExcel = new ExportExcel(QuestionUtils.getSubjectVal(request) + "（选择题）", Question.class, 1);
+		exportExcel.setDataList(list).write(request, response, QuestionUtils.getSubjectVal(request)+".xlsx");
 		return null;
 	}
 }
