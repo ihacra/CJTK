@@ -1,4 +1,4 @@
-package com.hacra.cjtk.commons.cache;
+package com.hacra.cjtk.commons.util.cache;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -10,12 +10,12 @@ import java.util.Map;
  * @author Hacra
  * @version 2020/12/13
  */
-public class CacheManager {
+public class CacheUtils {
 
-	private volatile static CacheManager cacheManager;
+	private volatile static CacheUtils cacheManager;
 	private Map<String, Object> cacheMap;
 	
-	private CacheManager() {
+	private CacheUtils() {
 		cacheMap = new HashMap<String, Object>();
 	}
 	
@@ -23,11 +23,11 @@ public class CacheManager {
 	 * 获取唯一实例化对象
 	 * @return
 	 */
-	public static CacheManager getInstance() {
+	public static CacheUtils getInstance() {
 		if (cacheManager == null) {
-			synchronized(CacheManager.class) {
+			synchronized(CacheUtils.class) {
 				if (cacheManager == null) {
-					cacheManager = new CacheManager();
+					cacheManager = new CacheUtils();
 				}
 			}
 		}

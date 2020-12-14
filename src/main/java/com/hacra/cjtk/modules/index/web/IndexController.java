@@ -4,7 +4,6 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
-import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -35,7 +34,7 @@ public class IndexController extends BaseController {
 	 * @return
 	 */
 	@RequestMapping("")
-	public String index(Question question, Model model, HttpServletRequest request) {
+	public String index(Question question, Model model) {
 		Map<String, String> map = QuestionUtils.getSubjectMap();
 		List<Integer> list = new ArrayList<Integer>();
 		for (String key : map.keySet()) {
@@ -47,7 +46,6 @@ public class IndexController extends BaseController {
 		}
 		addAttribute(model, "subjectMap", map);
 		addAttribute(model, "subjectList", list);
-		addTitleAttribute(model, request);
 		return "modules/index/index";
 	}
 	

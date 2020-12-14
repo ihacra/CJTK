@@ -44,16 +44,12 @@ public class ZswdController extends BaseController {
 	 */
 	@RequestMapping({"view", ""})
 	public String view(Question question, Model model, HttpServletRequest request) {
-		if (verification(request)) {
-			return "redirect:/";
-		}
 		List<String> idList = zswdService.randomQuestionIdList(request);
 		if (StringUtils.isBlank(question.getId()) && !idList.isEmpty()) {
 			question = questionService.get(String.valueOf(idList.get(0)), request);
 		}
 		addAttribute(model, "question", question);
 		addAttribute(model, "length", idList.size());
-		addTitleAttribute(model, request);
 		return "modules/zswd/zswdView";
 	}
 	

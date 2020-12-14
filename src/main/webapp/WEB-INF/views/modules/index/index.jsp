@@ -31,6 +31,7 @@
 <body>
 	<jsp:include page="/WEB-INF/views/include/top.jsp"/>
 	<div class="main">
+		<cw:toast content="${message}"></cw:toast>
 		<div class="area-layout">
 			<ul>
 				<c:forEach items="${subjectMap}" var="map" varStatus="vs">

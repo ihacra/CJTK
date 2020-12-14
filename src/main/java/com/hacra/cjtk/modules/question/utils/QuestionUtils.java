@@ -6,7 +6,7 @@ import java.util.Map;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import com.hacra.cjtk.commons.cache.CookieManager;
+import com.hacra.cjtk.commons.util.cache.CookieUtils;
 
 /**
  * QuestionUtils
@@ -38,7 +38,7 @@ public class QuestionUtils {
 	 * @return
 	 */
 	public static String getSubjectVal(HttpServletRequest request) {
-		return CookieManager.getInstance().getCookie(request, SUBJECT_VAL);
+		return CookieUtils.getCookie(request, SUBJECT_VAL);
 	}
 	
 	/**
@@ -46,7 +46,7 @@ public class QuestionUtils {
 	 * @return
 	 */
 	public static String getSubjectKey(HttpServletRequest request) {
-		return CookieManager.getInstance().getCookie(request, SUBJECT_KEY);
+		return CookieUtils.getCookie(request, SUBJECT_KEY);
 	}
 	
 	/**
@@ -55,7 +55,7 @@ public class QuestionUtils {
 	 * @param val
 	 */
 	public static void setSubjectVal(HttpServletResponse response, String val) {
-		CookieManager.getInstance().setCookie(response, SUBJECT_VAL, val);
+		CookieUtils.setCookie(response, SUBJECT_VAL, val);
 	}
 	
 	/**
@@ -64,6 +64,6 @@ public class QuestionUtils {
 	 * @param val
 	 */
 	public static void setSubjectKey(HttpServletResponse response, String val) {
-		CookieManager.getInstance().setCookie(response, SUBJECT_KEY, val);
+		CookieUtils.setCookie(response, SUBJECT_KEY, val);
 	}
 }

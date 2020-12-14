@@ -148,7 +148,7 @@ public class ExportExcel {
 	 * @return
 	 */
 	private Map<String, CellStyle> createStyles() {
-		styleMap = new HashMap<String, CellStyle>();
+		styleMap = new HashMap<String, CellStyle>(8);
 		// title
 		CellStyle style = this.workbook.createCellStyle();
 		style.setAlignment(HorizontalAlignment.CENTER);

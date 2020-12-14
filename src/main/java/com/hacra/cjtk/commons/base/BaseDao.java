@@ -12,7 +12,7 @@ public interface BaseDao<T> {
 
 	/**
 	 * 获取单条数据
-	 * @param id
+	 * @param entity
 	 * @return
 	 */
 	public T get(T entity);

@@ -1,4 +1,4 @@
-package com.hacra.cjtk.commons.cache;
+package com.hacra.cjtk.commons.util.cache;
 
 import java.io.UnsupportedEncodingException;
 import java.net.URLDecoder;
@@ -14,33 +14,16 @@ import javax.servlet.http.HttpServletResponse;
  * @author Hacra
  * @date 2020-12-07
  */
-public class CookieManager {
-
-	private volatile static CookieManager cookieManager;
+public class CookieUtils {
 	
-	private CookieManager() {}
-	
-	/**
-	 * 获取唯一实例化对象
-	 * @return
-	 */
-	public static CookieManager getInstance() {
-		if (cookieManager == null) {
-			synchronized(CookieManager.class) {
-				if (cookieManager == null) {
-					cookieManager = new CookieManager();
-				}
-			}
-		}
-		return cookieManager;
-	}
+	private CookieUtils() {}
 	
 	/**
 	 * 设置 Cookie（生成时间为1天）
 	 * @param name 名称
 	 * @param value 值
 	 */
-	public void setCookie(HttpServletResponse response, String name, String value) {
+	public static void setCookie(HttpServletResponse response, String name, String value) {
 		setCookie(response, name, value, "/", 60*60*24);
 	}
 	
@@ -49,7 +32,7 @@ public class CookieManager {
 	 * @param name 名称
 	 * @return 值
 	 */
-	public String getCookie(HttpServletRequest request, String name) {
+	public static String getCookie(HttpServletRequest request, String name) {
 		String val = getCookie(request, null, name, false);
 		return val == null ? "" : val;
 	}
@@ -62,7 +45,7 @@ public class CookieManager {
 	 * @param path
 	 * @param maxAge
 	 */
-	private void setCookie(HttpServletResponse response, String name, String value, String path, int maxAge) {
+	private static void setCookie(HttpServletResponse response, String name, String value, String path, int maxAge) {
 		Cookie cookie = new Cookie(name, null);
 		cookie.setPath(path);
 		cookie.setMaxAge(maxAge);
@@ -82,7 +65,7 @@ public class CookieManager {
 	 * @param isRemove 是否移除
 	 * @return 值
 	 */
-	private String getCookie(HttpServletRequest request, HttpServletResponse response, String name, boolean isRemove) {
+	private static String getCookie(HttpServletRequest request, HttpServletResponse response, String name, boolean isRemove) {
 		String value = null;
 		Cookie[] cookies = request.getCookies();
 		if (cookies != null) {
