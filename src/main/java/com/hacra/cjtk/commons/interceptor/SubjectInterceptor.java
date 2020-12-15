@@ -14,7 +14,7 @@ import com.hacra.cjtk.modules.question.utils.QuestionUtils;
  * @author Hacra
  * @date 2020-12-14
  */
-public class SubjectHandlerInterceptor implements HandlerInterceptor {
+public class SubjectInterceptor implements HandlerInterceptor {
 
 	/**
 	 * Cookie中若不存在科目信息则重定向至首页

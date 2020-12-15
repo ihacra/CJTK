@@ -7,7 +7,7 @@ import org.springframework.web.servlet.config.annotation.InterceptorRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 
 import com.hacra.cjtk.commons.filter.RequestFilter;
-import com.hacra.cjtk.commons.interceptor.SubjectHandlerInterceptor;
+import com.hacra.cjtk.commons.interceptor.SubjectInterceptor;
 
 /**
  * WebMvcConfig
@@ -20,7 +20,7 @@ public class WebMvcConfig implements WebMvcConfigurer {
 	
 	@Override
 	public void addInterceptors(InterceptorRegistry registry) {
-		registry.addInterceptor(new SubjectHandlerInterceptor())
+		registry.addInterceptor(new SubjectInterceptor())
 				.addPathPatterns("/**")
 				.excludePathPatterns("/", "/index/**", "/static/**", "/image/**");
 		WebMvcConfigurer.super.addInterceptors(registry);

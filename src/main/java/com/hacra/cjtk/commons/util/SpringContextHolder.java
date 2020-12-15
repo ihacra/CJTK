@@ -6,19 +6,19 @@ import org.springframework.context.ApplicationContextAware;
 import org.springframework.stereotype.Component;
 
 /**
- * SpringContextUtils
+ * SpringContextHolder
  * 
  * @author Hacra
  * @version 2020/12/12
  */
 @Component
-public class SpringContextUtils implements ApplicationContextAware {
+public class SpringContextHolder implements ApplicationContextAware {
 
 	private static ApplicationContext applicationContext;
 	
 	@Override
 	public void setApplicationContext(ApplicationContext arg0) throws BeansException {
-		SpringContextUtils.applicationContext = arg0;
+		SpringContextHolder.applicationContext = arg0;
 	}
 
 	/**
@@ -28,6 +28,6 @@ public class SpringContextUtils implements ApplicationContextAware {
 	 * @return
 	 */
 	public static <T> T getBean(Class<T> clazz) {
-		return SpringContextUtils.applicationContext.getBean(clazz);
+		return SpringContextHolder.applicationContext.getBean(clazz);
 	}
 }

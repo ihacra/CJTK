@@ -1,4 +1,4 @@
-package com.hacra.cjtk.commons.util.cache;
+package com.hacra.cjtk.commons.util;
 
 import java.io.UnsupportedEncodingException;
 import java.net.URLDecoder;
@@ -33,7 +33,7 @@ public class CookieUtils {
 	 * @return 值
 	 */
 	public static String getCookie(HttpServletRequest request, String name) {
-		String val = getCookie(request, null, name, false);
+		String val = getCookie(request, null, name);
 		return val == null ? "" : val;
 	}
 	
@@ -65,24 +65,19 @@ public class CookieUtils {
 	 * @param isRemove 是否移除
 	 * @return 值
 	 */
-	private static String getCookie(HttpServletRequest request, HttpServletResponse response, String name, boolean isRemove) {
-		String value = null;
+	private static String getCookie(HttpServletRequest request, HttpServletResponse response, String name) {
 		Cookie[] cookies = request.getCookies();
 		if (cookies != null) {
 			for (Cookie cookie : cookies) {
 				if (cookie.getName().equals(name)) {
 					try {
-						value = URLDecoder.decode(cookie.getValue(), "utf-8");
+						return URLDecoder.decode(cookie.getValue(), "utf-8");
 					} catch (UnsupportedEncodingException e) {
 						e.printStackTrace();
-					}
-					if (isRemove) {
-						cookie.setMaxAge(0);
-						response.addCookie(cookie);
 					}
 				}
 			}
 		}
-		return value;
+		return null;
 	}
 }
