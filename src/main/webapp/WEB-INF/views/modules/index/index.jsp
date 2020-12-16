@@ -8,8 +8,6 @@
 	<c:if test="${fn:length(title)<=4}">会计题库</c:if>
 	<c:if test="${fn:length(title)>5}">${title}</c:if>
 </title>
-</head>
-<head>
 <style>
 	.title {
 		color: #fff;

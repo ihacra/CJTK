@@ -29,7 +29,11 @@ public class QuestionService extends BaseService<QuestionDao, Question> {
 	public Question get(String id, HttpServletRequest request) {
 		Question question = new Question(id);
 		question.setSubject(QuestionUtils.getSubjectKey(request));
-		return StringUtils.isBlank(id) ? question : super.get(question);
+		if (StringUtils.isBlank(id)) {
+			return question;
+		}
+		Question entity = super.get(question);
+		return entity == null ? question : entity;
 	}
 	
 	/**

@@ -5,8 +5,6 @@
 <head>
 <%@ include file="/WEB-INF/views/include/head.jsp"%>
 <title>${title}</title>
-</head>
-<head>
 <style>
 	.btnStyle {
 		opacity: 0;
