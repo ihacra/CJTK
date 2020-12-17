@@ -77,7 +77,7 @@ public class QuestionController extends BaseController {
 			return "redirect:/qbtk/view?id=" + question.getId();
 		} else {
 			addMessage(redirectAttributes, "会计题目添加成功!");
-			return "redirect:/zswd/?id=" + question.getId();
+			return "redirect:/question/";
 		}
 	}
 	

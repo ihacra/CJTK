@@ -59,7 +59,7 @@
 					<div class="zswd-right">
 						<cl:textarea name="title" rows="3" maxlength="300" classStyle="required" placeholder="请输入问题题目"></cl:textarea>
 						<div id="option">
-							<div style="margin: 6px 0 6px 0; display: inline-flex;">
+							<div style="margin: 12px 0 6px 0; display: inline-flex;">
 								A.&nbsp;&nbsp;<cl:input id="optionA" name="optionA" maxlength="60" classStyle="required" placeholder="选项A"></cl:input>
 							</div>
 							<div style="margin: 6px 0; display: inline-flex;">

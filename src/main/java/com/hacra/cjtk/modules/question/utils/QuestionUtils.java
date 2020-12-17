@@ -27,8 +27,9 @@ public class QuestionUtils {
 	public static Map<String, String> getSubjectMap() {
 		if (subjectMap == null) {
 			subjectMap = new LinkedHashMap<>(8);
-			subjectMap.put("0", "基础会计学");
-			subjectMap.put("1", "消费经济学");
+			subjectMap.put("1", "初级会计实务");
+			subjectMap.put("2", "基础会计学");
+			subjectMap.put("0", "其他");
 		}
 		return subjectMap;
 	}

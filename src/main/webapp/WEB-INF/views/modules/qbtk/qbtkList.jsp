@@ -46,7 +46,7 @@
 			<div class="area-zswd" style="background: hsla(0,0%,97%,.98);">
 				<div class="zswd-row zswd-end">
 					<div class="zswd-right">
-						编号或题目：<input name="title" autocomplete="off" value="${question.title}">&nbsp;&nbsp;&nbsp;&nbsp;
+						题目：<input name="title" autocomplete="off" value="${question.title}">&nbsp;&nbsp;&nbsp;&nbsp;
 						<button class="bg-color2">查询</button>
 					</div>
 				</div>
