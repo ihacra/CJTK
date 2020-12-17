@@ -20,6 +20,7 @@ public abstract class BaseEntity<T> implements Serializable {
 	private Page<T> page;		// 分页
 	public static final String DEL_FLAG_NORMAL = "0";
 	public static final String DEL_FLAG_DELETE = "1";
+	public static final String DB_NAME = "SQLite";		// MySQL、SQLite
 	
 	public BaseEntity() {
 		this.delFlag = DEL_FLAG_NORMAL;

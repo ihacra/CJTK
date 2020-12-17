@@ -52,7 +52,7 @@ $
 DELIMITER ;
 
 
--- 创建Question表
+-- 创建Question表（MySQL）
 DROP TABLE IF EXISTS `question`;
 CREATE TABLE `question` (
 	`id` VARCHAR(64) NOT NULL COMMENT '主键',
@@ -74,3 +74,20 @@ CREATE TABLE `question` (
 COLLATE='utf8mb4_0900_ai_ci'
 ENGINE=InnoDB;
 
+-- 创建Question表（SQLite）
+CREATE TABLE question (
+    id          VARCHAR (64)   NOT NULL PRIMARY KEY,
+    subject     VARCHAR (8)    NOT NULL,
+    title       VARCHAR (1024) NOT NULL,
+    option_a    VARCHAR (512),
+    option_b    VARCHAR (512),
+    option_c    VARCHAR (512),
+    option_d    VARCHAR (512),
+    answer      VARCHAR (512),
+    analysis    VARCHAR (1024),
+    label       VARCHAR (128),
+    type        VARCHAR (8),
+    create_date DATETIME       NOT NULL,
+    update_date DATETIME       NOT NULL,
+    del_flag    VARCHAR (8)    NOT NULL
+);

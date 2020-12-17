@@ -88,11 +88,11 @@
 			</c:forEach>
 			<div class="zswd-row zswd-end">
 				<div class="btn-group">
-					<button id="btnPrev" class="bg-color1" type="button" onclick="page('1')" <c:if test="${page.prev >= page.pageNo}">disabled="disabled"</c:if>>首页</button>
-					<button id="btnPrev" class="bg-color2" type="button" onclick="page('${page.prev}')" <c:if test="${page.prev >= page.pageNo}">disabled="disabled"</c:if>>上一页</button>
+					<button type="button" id="btnPrev" class="bg-color1" type="button" onclick="page('1')" <c:if test="${page.prev >= page.pageNo}">disabled="disabled"</c:if>>首页</button>
+					<button type="button" id="btnPrev" class="bg-color2" type="button" onclick="page('${page.prev}')" <c:if test="${page.prev >= page.pageNo}">disabled="disabled"</c:if>>上一页</button>
 					${page.pageNo}/${page.totalPage}
-					<button id="btnNext" class="bg-color3" type="button" onclick="page('${page.next}')" <c:if test="${page.next <= page.pageNo}">disabled="disabled"</c:if>>下一页</button>
-					<button id="btnPrev" class="bg-color4" type="button" onclick="page('${page.totalPage}')" <c:if test="${page.next <= page.pageNo}">disabled="disabled"</c:if>>尾页</button>
+					<button type="button" id="btnNext" class="bg-color3" type="button" onclick="page('${page.next}')" <c:if test="${page.next <= page.pageNo}">disabled="disabled"</c:if>>下一页</button>
+					<button type="button" id="btnPrev" class="bg-color4" type="button" onclick="page('${page.totalPage}')" <c:if test="${page.next <= page.pageNo}">disabled="disabled"</c:if>>尾页</button>
 				</div>
 			</div>
 		</div>

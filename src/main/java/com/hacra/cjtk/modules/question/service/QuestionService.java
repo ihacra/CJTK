@@ -27,13 +27,19 @@ public class QuestionService extends BaseService<QuestionDao, Question> {
 	 * 获取问题
 	 */
 	public Question get(String id, HttpServletRequest request) {
-		Question question = new Question(id);
+		Question question = new Question();
 		question.setSubject(QuestionUtils.getSubjectKey(request));
 		if (StringUtils.isBlank(id)) {
 			return question;
 		}
+		question.setId(id);
 		Question entity = super.get(question);
-		return entity == null ? question : entity;
+		if (entity == null) {
+			question.setId(null);
+			return question;
+		} else {
+			return entity;
+		}
 	}
 	
 	/**

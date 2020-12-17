@@ -54,7 +54,9 @@
 				AND a.type = #{type}
 			</if>
 			<if test="title != null and title != ''">
-				AND a.title LIKE concat('%',#{title},'%')
+				AND a.title LIKE 
+					<if test="DB_NAME == 'MySQL'">concat('%',#{title},'%')</if>
+					<if test="DB_NAME == 'SQLite'">'%'||#{title}||'%'</if>
 			</if>
 		</where>
 		ORDER BY a.id, a.update_date DESC
@@ -70,7 +72,9 @@
 				AND a.type = #{type}
 			</if>
 			<if test="title != null and title != ''">
-				AND a.title LIKE concat('%',#{title},'%')
+				AND a.title LIKE 
+					<if test="DB_NAME == 'MySQL'">concat('%',#{title},'%')</if>
+					<if test="DB_NAME == 'SQLite'">'%'||#{title}||'%'</if>
 			</if>
 		</where>
 	</select>
@@ -132,7 +136,8 @@
 	</update>
 
 	<select id="getNextId" resultType="String">
-		SELECT nextval("question")
+		
+			SELECT ifnull(max(t.id),0)+1 from question t
 	</select>
 
 	<select id="getIdList" resultType="String">

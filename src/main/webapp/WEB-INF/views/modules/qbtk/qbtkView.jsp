@@ -81,9 +81,9 @@
 			</div>
 			<div class="zswd-row zswd-end">
 				<div class="btn-group">
-					<button id="btnEdit" class="bg-color1 btnStyle" onclick="btnEditOnclick()">修改</button>
-					<button class="bg-color2" onclick="window.location.href='/qbtk/'">返回</button>
-					<button id="btnDelete" class="bg-color1 btnStyle" onclick="btnDeleteOnclick()">删除</button>
+					<button type="button" id="btnEdit" class="bg-color1 btnStyle" onclick="btnEditOnclick()">修改</button>
+					<button type="button" class="bg-color2" onclick="window.location.href='/qbtk/'">返回</button>
+					<button type="button" id="btnDelete" class="bg-color1 btnStyle" onclick="btnDeleteOnclick()">删除</button>
 				</div>
 			</div>
 		</div>

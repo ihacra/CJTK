@@ -120,9 +120,9 @@
 			</div>
 			<div class="zswd-row zswd-end">
 				<div class="btn-group">
-					<button id="btnPre" class="bg-color2" disabled="disabled">上一题</button>
+					<button type="button" id="btnPre" class="bg-color2" disabled="disabled">上一题</button>
 					<span id="pageNumber">1/${length}</span>
-					<button id="btnNext" class="bg-color1">下一题</button>
+					<button type="button" id="btnNext" class="bg-color1">下一题</button>
 				</div>
 			</div>
 		</div>
