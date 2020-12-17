@@ -134,8 +134,12 @@
 	</update>
 
 	<select id="getNextId" resultType="String">
-		
-			SELECT ifnull(max(t.id),0)+1 from question t
+		<if test="DB_NAME == 'MySQL'">
+			SELECT nextval("question");
+		</if>
+		<if test="DB_NAME == 'SQLite'">
+			SELECT ifnull(max(cast(t.id as int)),0)+1 from question t;
+		</if>
 	</select>
 
 	<select id="getIdList" resultType="String">
