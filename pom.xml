@@ -4,17 +4,15 @@
 	<modelVersion>4.0.0</modelVersion>
 
 	<groupId>com.hacra</groupId>
-	<artifactId>CJKS</artifactId>
+	<artifactId>CJTK</artifactId>
 	<packaging>war</packaging>
-	<version>0.0.1-SNAPSHOT</version>
-	<name>CJTK Maven Webapp</name>
-	<url>http://maven.apache.org</url>
+	<version>1.0.0</version>
+	
+	<name>CJTK</name>
+	<description>CJTK</description>
 
 	<properties>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-		<project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
-		<maven.compiler.source>1.8</maven.compiler.source>
-		<maven.compiler.target>1.8</maven.compiler.target>
 		<java.version>1.8</java.version>
 	</properties>
 
@@ -30,6 +28,10 @@
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-web</artifactId>
 		</dependency>
+		<dependency>
+        	<groupId>org.springframework.boot</groupId>
+        	<artifactId>spring-boot-starter-tomcat</artifactId>
+        </dependency>
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-devtools</artifactId>
@@ -86,24 +88,48 @@
 		<finalName>CJTK</finalName>
 		<plugins>
 			<plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-compiler-plugin</artifactId>
+                <configuration>
+                    <source>${java.version}</source>
+                    <target>${java.version}</target>
+                    <showWarnings>true</showWarnings>
+                </configuration>
+            </plugin>
+			<plugin>
 				<groupId>org.springframework.boot</groupId>
 				<artifactId>spring-boot-maven-plugin</artifactId>
+				<!-- 打包为jar时SpringBoot版本要为1.4.2 -->
+				<!-- <version>1.4.2.RELEASE</version> -->
+				<configuration>
+					<mainClass>com.hacra.cjtk.Application</mainClass>
+					<encoding>${project.build.sourceEncoding}</encoding>
+				</configuration>
+				<executions>
+					<execution>
+						<goals>
+							<goal>repackage</goal>
+						</goals>
+					</execution>
+				</executions>
 			</plugin>
 		</plugins>
+		<resources>
+			<resource>
+				<directory>src/main/webapp</directory>
+				<targetPath>META-INF/resources</targetPath>
+				<includes>
+					<include>**/**</include>
+				</includes>
+				<filtering>true</filtering>
+			</resource>
+			<resource>
+				<directory>src/main/resources</directory>
+				<includes>
+					<include>**/**</include>
+				</includes>
+				<filtering>true</filtering>
+			</resource>
+		</resources>
 	</build>
-	
-	<profiles>
-	    <profile>
-	        <id>jdk-1.8</id>
-	        <activation>
-	            <activeByDefault>true</activeByDefault>
-	            <jdk>1.8</jdk>
-	        </activation>
-	        <properties>
-	            <maven.compiler.source>1.8</maven.compiler.source>
-	            <maven.compiler.target>1.8</maven.compiler.target>                     
-				<maven.compiler.compilerVersion>1.8</maven.compiler.compilerVersion>
-	        </properties>
-	    </profile>
-	</profiles>
 </project>
