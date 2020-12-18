@@ -58,11 +58,4 @@ public interface BaseDao<T> {
 	 * @return
 	 */
 	public int delete(T entity);
-	
-	/**
-	 * 获取下一id
-	 * @param entity
-	 * @return
-	 */
-	public String getNextId();
 }

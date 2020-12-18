@@ -18,10 +18,10 @@
 	// 修改题目
 	function btnEditOnclick() {
 		dialog({
-			trigger: "btnEdit",
 			content: "是否确认修改该问题条目？",
 			confirm: function() {
 				window.location.href = "/question/modify?path=qbtk&id=" + $("#id").val();
+				return true;
 			}
 		});
 	}
@@ -29,10 +29,10 @@
 	// 删除题目
 	function btnDeleteOnclick() {
 		dialog({
-			trigger: "btnDelete",
 			content: "是否确认删除该问题条目？",
 			confirm: function() {
 				window.location.href = "/question/delete?id=" + $("#id").val();
+				return true;
 			}
 		});
 	}
@@ -81,9 +81,9 @@
 			</div>
 			<div class="zswd-row zswd-end">
 				<div class="btn-group">
-					<button type="button" id="btnEdit" class="bg-color1 btnStyle" onclick="btnEditOnclick()">修改</button>
+					<button type="button" class="bg-color1 btnStyle" onclick="btnEditOnclick()">修改</button>
 					<button type="button" class="bg-color2" onclick="window.location.href='/qbtk/'">返回</button>
-					<button type="button" id="btnDelete" class="bg-color1 btnStyle" onclick="btnDeleteOnclick()">删除</button>
+					<button type="button" class="bg-color1 btnStyle" onclick="btnDeleteOnclick()">删除</button>
 				</div>
 			</div>
 		</div>

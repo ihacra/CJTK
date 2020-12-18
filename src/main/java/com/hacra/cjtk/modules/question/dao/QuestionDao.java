@@ -21,5 +21,5 @@ public interface QuestionDao extends BaseDao<Question> {
 	 * @param question
 	 * @return
 	 */
-	public List<String> getIdList(Question question);
+	public List<Integer> getIdList(Question question);
 }

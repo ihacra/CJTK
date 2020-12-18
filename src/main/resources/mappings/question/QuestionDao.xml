@@ -79,7 +79,6 @@
 
 	<insert id="insert">
 		INSERT INTO question (
-			id,
 			subject,
 			title,
 			option_a,
@@ -94,7 +93,6 @@
 			update_date,
 			del_flag
 		) VALUES (
-			#{id},
 			#{subject},
 			#{title},
 			#{optionA},
@@ -133,16 +131,7 @@
 		WHERE id = #{id}
 	</update>
 
-	<select id="getNextId" resultType="String">
-		<if test="DB_NAME == 'MySQL'">
-			SELECT nextval("question");
-		</if>
-		<if test="DB_NAME == 'SQLite'">
-			SELECT ifnull(max(cast(t.id as int)),0)+1 from question t;
-		</if>
-	</select>
-
-	<select id="getIdList" resultType="String">
+	<select id="getIdList" resultType="Integer">
 		SELECT id FROM question t WHERE t.del_flag = #{DEL_FLAG_NORMAL} AND t.subject = #{subject}
 	</select>
 </mapper>

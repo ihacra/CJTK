@@ -64,6 +64,7 @@
 			content: "是否确认修改该问题条目？",
 			confirm: function() {
 				window.location.href = "/question/modify?path=zswd&id=" + $("#id").val();
+				return true;
 			}
 		});
 	}

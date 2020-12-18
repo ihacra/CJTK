@@ -27,7 +27,7 @@ public class Question extends BaseEntity<Question> {
 		super();
 	}
 	
-	public Question(String id) {
+	public Question(Integer id) {
 		super(id);
 	}
 

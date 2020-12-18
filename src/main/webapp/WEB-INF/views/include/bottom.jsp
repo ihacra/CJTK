@@ -36,10 +36,11 @@
 				content: $("#importFormTemplate").html(),
 				confirm: function() {
 					if ($("#importForm").valid()) {
+						loading();
 						$("#importForm").submit();
-						return false;
-					} else {
 						return true;
+					} else {
+						return false;
 					}
 				}
 			});
@@ -52,6 +53,7 @@
 				content: "是否确认导出全部题库？",
 				confirm: function() {
 					window.location.href = "/question/exportExcel";
+					return true;
 				}
 			});
 		}

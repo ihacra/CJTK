@@ -24,7 +24,7 @@ public class ZswdService {
 
 	private String flag;				// 上次更新的科目
 	private long lastUpdateTime = 0;	// 上次更新时间
-	private List<String> idList;		// 随机ID数组
+	private List<Integer> idList;		// 随机ID数组
 	@Autowired
 	private QuestionService questionService;
 	
@@ -33,7 +33,7 @@ public class ZswdService {
 	 * 获取全部ID并随机打乱顺序
 	 * @return
 	 */
-	public List<String> randomQuestionIdList(HttpServletRequest request) {
+	public List<Integer> randomQuestionIdList(HttpServletRequest request) {
 		long curTime = System.currentTimeMillis();
 		if (idList != null && curTime - lastUpdateTime < 600000 && StringUtils.equals(flag, QuestionUtils.getSubjectKey(request))) {
 			return idList;
@@ -45,7 +45,7 @@ public class ZswdService {
 		int n = idList.size() / 2;
 		for (int i = 0; i < n; i++) {
 			int j = random.nextInt(idList.size());
-			String tempId = idList.get(i);
+			Integer tempId = idList.get(i);
 			idList.set(i, idList.get(j));
 			idList.set(j, tempId);
 		}
@@ -58,7 +58,7 @@ public class ZswdService {
 	 * 获取问题id列表
 	 * @return
 	 */
-	public List<String> getIdList() {
+	public List<Integer> getIdList() {
 		return idList;
 	}
 }

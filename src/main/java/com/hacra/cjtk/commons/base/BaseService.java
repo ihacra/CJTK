@@ -6,8 +6,6 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.transaction.annotation.Transactional;
 
-import com.hacra.cjtk.commons.util.StringUtils;
-
 /**
  * BaseService
  * 
@@ -57,8 +55,7 @@ public abstract class BaseService<D extends BaseDao<T>, T extends BaseEntity<T>>
 	 */
 	@Transactional(readOnly = false)
 	public void save(T entity) {
-		if (StringUtils.isBlank(entity.getId())) {
-			entity.setId(dao.getNextId());
+		if (entity.getId() == null) {
 			entity.setCreateDate(new Date());
 			entity.setUpdateDate(entity.getCreateDate());
 			dao.insert(entity);

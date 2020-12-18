@@ -1,6 +1,5 @@
 package com.hacra.cjtk.modules.question.service;
 
-import java.util.Date;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
@@ -26,10 +25,10 @@ public class QuestionService extends BaseService<QuestionDao, Question> {
 	/**
 	 * 获取问题
 	 */
-	public Question get(String id, HttpServletRequest request) {
+	public Question get(Integer id, HttpServletRequest request) {
 		Question question = new Question();
 		question.setSubject(QuestionUtils.getSubjectKey(request));
-		if (StringUtils.isBlank(id)) {
+		if (id == null) {
 			return question;
 		}
 		question.setId(id);
@@ -55,17 +54,8 @@ public class QuestionService extends BaseService<QuestionDao, Question> {
 	 * 获取ID列表
 	 * @return
 	 */
-	public List<String> getIdList(Question question) {
+	public List<Integer> getIdList(Question question) {
 		return dao.getIdList(question);
-	}
-	
-	/**
-	 * 保存方法
-	 */
-	@Override
-	@Deprecated
-	public void save(Question entity) {
-		super.save(entity);
 	}
 	
 	/**
@@ -74,16 +64,10 @@ public class QuestionService extends BaseService<QuestionDao, Question> {
 	@Transactional(readOnly = false)
 	public void save(Question entity, HttpServletRequest request) {
 		formatData(entity);
-		if (StringUtils.isBlank(entity.getId())) {
-			entity.setId(dao.getNextId());
+		if (entity.getId() == null) {
 			entity.setSubject(QuestionUtils.getSubjectKey(request));
-			entity.setCreateDate(new Date());
-			entity.setUpdateDate(entity.getCreateDate());
-			dao.insert(entity);
-		} else {
-			entity.setUpdateDate(new Date());
-			dao.update(entity);
 		}
+		super.save(entity);
 	}
 	
 	/**

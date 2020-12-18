@@ -1,3 +1,15 @@
+// 加载动画
+function loading() {
+	var content = $("<div class='load_c'>请稍等...</div>");
+	var load = $("<div class='load_l'><span></span><span></span><span></span><span></span></div>");
+	$("body").append($("<div class='loading-bg'></div>").append(content).append(load));
+}
+
+//关闭加载动画
+function close() {
+	$(".loading-bg").remove();
+}
+
 // 提示窗口
 function toast(content, autoClose) {
 	var type = "toast-success";
@@ -18,12 +30,11 @@ function toast(content, autoClose) {
 }
 
 // 弹出确认对话框
-// settings = {trigger, title, content, confirm, cancel}
+// settings = {title, content, confirm, cancel}
 function dialog(settings) {
-	if (settings.trigger != null) $("#"+settings.trigger).attr("disabled", true);
 	if (settings.title == null) settings.title = "信息";
 	var dialogId = "dialog-"+new Date().getTime();
-	var dialog = $("<div id='"+dialogId+"' class='dialog-area'></div>");
+	var dialog = $("<div class='dialog-area'></div>");
 	var dialogTitle = $("<div class='dialog-area-title'>"+settings.title+"</div>");
 	dialog.append(dialogTitle);
 	var dialogClose = $("<div class='dialog-area-close btn'>×</div>");
@@ -31,7 +42,6 @@ function dialog(settings) {
 	dialogClose.click(function() {
 		if (settings.cancel != null) settings.cancel(); 
 		$("#"+dialogId).remove(); 
-		if (settings.trigger != null) $("#"+settings.trigger).attr("disabled", false);
 	});
 	dialog.append(dialogClose);
 	var dialogContent = $("<div class='dialog-area-content'>"+settings.content+"</div>");
@@ -41,11 +51,12 @@ function dialog(settings) {
 	dialog.append(dialogCancel);
 	var dialogConfirm = $("<div class='dialog-area-btn btn-confirm btn'>确认</div>")
 	dialogConfirm.click(function() {
-		if (!settings.confirm()) {
-			$("#"+dialogId).remove(); 
-			if (settings.trigger != null) $("#"+settings.trigger).attr("disabled", false);
+		if (settings.confirm != null) {
+			if (settings.confirm()) $("#"+dialogId).remove();
+		} else {
+			$("#"+dialogId).remove();
 		}
 	});
 	dialog.append(dialogConfirm);
-	$("body").append(dialog);
+	$("body").append($("<div id='"+dialogId+"' class='dialog-bg'></div>").append(dialog));
 }

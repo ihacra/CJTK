@@ -13,7 +13,6 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.hacra.cjtk.commons.base.BaseController;
-import com.hacra.cjtk.commons.util.StringUtils;
 import com.hacra.cjtk.modules.question.entity.Question;
 import com.hacra.cjtk.modules.question.service.QuestionService;
 import com.hacra.cjtk.modules.zswd.service.ZswdService;
@@ -34,7 +33,7 @@ public class ZswdController extends BaseController {
 	private QuestionService questionService;
 	
 	@ModelAttribute
-	public Question get(@RequestParam(required = false) String id, HttpServletRequest request) {
+	public Question get(@RequestParam(required = false) Integer id, HttpServletRequest request) {
 		return questionService.get(id, request);
 	}
 	
@@ -44,9 +43,9 @@ public class ZswdController extends BaseController {
 	 */
 	@RequestMapping({"view", ""})
 	public String view(Question question, Model model, HttpServletRequest request) {
-		List<String> idList = zswdService.randomQuestionIdList(request);
-		if (StringUtils.isBlank(question.getId()) && !idList.isEmpty()) {
-			question = questionService.get(String.valueOf(idList.get(0)), request);
+		List<Integer> idList = zswdService.randomQuestionIdList(request);
+		if (question.getId() == null && !idList.isEmpty()) {
+			question = questionService.get(idList.get(0), request);
 		}
 		addAttribute(model, "question", question);
 		addAttribute(model, "length", idList.size());
@@ -65,7 +64,7 @@ public class ZswdController extends BaseController {
 		if (index < 0 || index >= zswdService.getIdList().size()) {
 			question = new Question();
 		} else {
-			question = questionService.get(String.valueOf(zswdService.getIdList().get(index)), request);
+			question = questionService.get(zswdService.getIdList().get(index), request);
 		}
 		return question;
 	}

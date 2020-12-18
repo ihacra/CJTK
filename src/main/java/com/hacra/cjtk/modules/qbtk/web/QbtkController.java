@@ -28,7 +28,7 @@ public class QbtkController extends BaseController {
 	private QuestionService questionService;
 	
 	@ModelAttribute
-	public Question get(@RequestParam(required = false) String id, HttpServletRequest request) {
+	public Question get(@RequestParam(required = false) Integer id, HttpServletRequest request) {
 		return questionService.get(id, request);
 	}
 	

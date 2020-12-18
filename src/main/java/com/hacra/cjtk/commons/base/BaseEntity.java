@@ -13,7 +13,7 @@ public abstract class BaseEntity<T> implements Serializable {
 
 	private static final long serialVersionUID = 1L;
 	
-	private String id;			// id
+	private Integer id;			// id
 	private Date createDate;	// 创建日期
 	private Date updateDate;	// 更新日期
 	private String delFlag;		// 删除标记（0：正常；1：删除）
@@ -25,16 +25,16 @@ public abstract class BaseEntity<T> implements Serializable {
 	public BaseEntity() {
 		this.delFlag = DEL_FLAG_NORMAL;
 	}
-	
-	public BaseEntity(String id) {
+	 
+	public BaseEntity(Integer id) {
 		this.id = id;
 	}
 	
-	public String getId() {
+	public Integer getId() {
 		return id;
 	}
 
-	public void setId(String id) {
+	public void setId(Integer id) {
 		this.id = id;
 	}
 

@@ -13,14 +13,14 @@
 	// 提交表单
 	function btnSaveOnclick() {
 		dialog({
-			trigger: "btnSave",
 			content: "是否确认提交？",
 			confirm: function() {
 				if ($("#inputForm").valid()) {
+					loading();
 					$("#inputForm").submit();
-					return false;
-				} else {
 					return true;
+				} else {
+					return false;
 				}
 			}
 		});
@@ -96,7 +96,7 @@
 				</div>
 				<div class="zswd-row zswd-end">
 					<div class="btn-group">
-						<button type="button" id="btnSave" class="bg-color2" onclick="btnSaveOnclick()">保存</button>
+						<button type="button" class="bg-color2" onclick="btnSaveOnclick()">保存</button>
 						<button type="button" class="bg-color1" onclick="history.go(-1)">返回</button>
 					</div>
 				</div>
