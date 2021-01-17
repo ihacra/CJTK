@@ -61,12 +61,10 @@ public class QuestionService extends BaseService<QuestionDao, Question> {
 	/**
 	 * 保存方法
 	 */
+	@Override
 	@Transactional(readOnly = false)
-	public void save(Question entity, HttpServletRequest request) {
+	public void save(Question entity) {
 		formatData(entity);
-		if (entity.getId() == null) {
-			entity.setSubject(QuestionUtils.getSubjectKey(request));
-		}
 		super.save(entity);
 	}
 	
@@ -84,11 +82,13 @@ public class QuestionService extends BaseService<QuestionDao, Question> {
 		question.setAnalysis(StringUtils.trimToEmpty(question.getAnalysis()));
 		question.setLabel(StringUtils.trimToEmpty(question.getLabel()));
 		if (StringUtils.isNotBlank(question.getTitle())) {
-			String regex = "(（）|\\(\\))";
+			question.setTitle(question.getTitle().replace("　", " "));
+			String regex = "(（\\s*?）|\\(\\s*?\\))";
 			question.setTitle(question.getTitle().replaceAll(regex, "（ ）"));
 		}
 		question.setAnalysis(StringUtils.defaultIfBlank(question.getAnalysis(), "无"));
 		question.setLabel(StringUtils.defaultIfBlank(question.getLabel(), "无"));
 		question.setType(StringUtils.defaultIfBlank(question.getType(), "0"));
+		question.setWeight(question.getWeight() == null ? 0 : question.getWeight());
 	}
 }

@@ -237,6 +237,11 @@ body, html {
 	display: inline;
 }
 
+.zswd-title span {
+	color: sienna;
+    font-weight: bold;
+}
+
 /* 表单验证信息 */
 label.error {
   background:url("../../../../image/v-error.png") no-repeat 0px 0px;

@@ -80,7 +80,7 @@ textarea {
 	color: #222;
 	border: 1px solid #bbb;
     background: #fff;
-    resize: none;
+    resize: vertical;
     margin-bottom: -6px;
 	font-family: -apple-system,BlinkMacSystemFont,SF UI Text,Helvetica Neue,PingFang SC,Hiragino Sans GB,Microsoft YaHei UI,Microsoft YaHei,Arial,sans-serif;
 }

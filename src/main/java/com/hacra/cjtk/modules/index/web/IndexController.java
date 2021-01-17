@@ -43,6 +43,8 @@ public class IndexController extends BaseController {
 			list.add(questionService.getCount(question));
 			question.setType("1");
 			list.add(questionService.getCount(question));
+			question.setType("2");
+			list.add(questionService.getCount(question));
 		}
 		addAttribute(model, "subjectMap", map);
 		addAttribute(model, "subjectList", list);

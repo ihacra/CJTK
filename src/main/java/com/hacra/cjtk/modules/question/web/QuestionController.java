@@ -11,6 +11,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
@@ -68,7 +69,10 @@ public class QuestionController extends BaseController {
 	 */
 	@RequestMapping("save")
 	public String save(Question question, String path, HttpServletRequest request, RedirectAttributes redirectAttributes) {
-		questionService.save(question, request);
+		if (question.getId() == null) {
+			question.setSubject(QuestionUtils.getSubjectKey(request));
+		}
+		questionService.save(question);
 		if ("zswd".equals(path)) {
 			addMessage(redirectAttributes, "会计题目修改成功!");
 			return "redirect:/zswd/?id=" + question.getId();
@@ -107,7 +111,8 @@ public class QuestionController extends BaseController {
 			List<Question> list = importExcel.getDataList(Question.class, 1);
 			for (Question question : list) {
 				question.setType("0");
-				questionService.save(question, request);
+				question.setSubject(QuestionUtils.getSubjectKey(request));
+				questionService.save(question);
 			}
 			addMessage(redirectAttributes, "会计题目导入成功：共导入"+list.size()+"条！");
 		} catch (Exception e) {
@@ -128,5 +133,13 @@ public class QuestionController extends BaseController {
 		ExportExcel exportExcel = new ExportExcel(QuestionUtils.getSubjectVal(request) + "（选择题）", Question.class, 1);
 		exportExcel.setDataList(list).write(request, response, QuestionUtils.getSubjectVal(request)+".xlsx");
 		return null;
+	}
+	
+	@ResponseBody
+	@RequestMapping("addWeight")
+	public Integer addWeight(Question question) {
+		question.setWeight(question.getWeight() == null ? 1 : question.getWeight()+1);
+		questionService.save(question);
+		return question.getWeight();
 	}
 }

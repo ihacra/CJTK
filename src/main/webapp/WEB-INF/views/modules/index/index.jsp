@@ -23,6 +23,7 @@
 		color: #666;
 	    display: block;
 	    line-height: 50px;
+	    font-size: 14px;
 	}
 </style>
 </head>
@@ -36,7 +37,7 @@
 					<li>
 						<a href="/index/forward?subject=${map.key}">
 							<span class="title bg-color${vs.index%5+1}">${map.value}</span>
-							<span class="info">选择题：${subjectList[vs.index*2]}条&nbsp;|&nbsp;填空题：${subjectList[vs.index*2+1]}条</span>
+							<span class="info">单选题:${subjectList[vs.index*3]}条&nbsp;|&nbsp;多选题:${subjectList[vs.index*3+1]}条&nbsp;|&nbsp;判断题:${subjectList[vs.index*3+2]}条</span>
 						</a>
 					</li>
 				</c:forEach>

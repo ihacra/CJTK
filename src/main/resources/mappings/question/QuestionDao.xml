@@ -14,6 +14,7 @@
 		a.analysis AS "analysis",
 		a.label AS "label",
 		a.type AS "type",
+		a.weight AS "weight",
 		a.del_flag AS "delFlag"
 	</sql>
 
@@ -38,7 +39,7 @@
 				AND a.type = #{type}
 			</if>
 		</where>
-		ORDER BY a.id, a.update_date DESC
+		ORDER BY a.weight DESC, a.update_date DESC
 	</select>
 	
 	<select id="findPage" resultType="Question">
@@ -57,7 +58,7 @@
 					<if test="DB_NAME == 'SQLite'">'%'||#{title}||'%'</if>
 			</if>
 		</where>
-		ORDER BY a.id, a.update_date DESC
+		ORDER BY a.weight DESC, a.update_date DESC
 		LIMIT ${(page.pageNo-1)*page.pageSize}, #{page.pageSize}
 	</select>
 	
@@ -89,6 +90,7 @@
 			analysis,
 			label,
 			type,
+			weight,
 			create_date,
 			update_date,
 			del_flag
@@ -103,6 +105,7 @@
 			#{analysis},
 			#{label},
 			#{type},
+			#{weight},
 			#{createDate},
 			#{updateDate},
 			#{delFlag}
@@ -120,6 +123,7 @@
 			analysis = #{analysis},
 			label = #{label},
 			type = #{type},
+			weight = #{weight},
 			update_date = #{updateDate}
 		WHERE id = #{id}
 	</update>
@@ -130,7 +134,7 @@
 			update_date = #{updateDate}
 		WHERE id = #{id}
 	</update>
-
+	
 	<select id="getIdList" resultType="Integer">
 		SELECT id FROM question t WHERE t.del_flag = #{DEL_FLAG_NORMAL} AND t.subject = #{subject}
 	</select>

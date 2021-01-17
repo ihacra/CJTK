@@ -46,9 +46,11 @@
 			success: function(qs) {
 				$("#id").val(qs.id);
 				if (qs.type == '0') {
-					$("#title").html("<b>"+qs.id+"：</b>"+qs.title+"<p><br/>A. "+qs.optionA+"<br/>B. "+qs.optionB+"<br/>C. "+qs.optionC+"<br/>D. "+qs.optionD+"</p>");
+					$("#title").html("<span>单选题：</span>"+qs.title+"<p><br/>A. "+qs.optionA+"<br/>B. "+qs.optionB+"<br/>C. "+qs.optionC+"<br/>D. "+qs.optionD+"</p>");
 				} else if (qs.type == '1') {
-					$("#title").html("<b>"+qs.id+"：</b>"+qs.title);
+					$("#title").html("<span>多选题：</span>"+qs.title+"<p><br/>A. "+qs.optionA+"<br/>B. "+qs.optionB+"<br/>C. "+qs.optionC+"<br/>D. "+qs.optionD+"</p>");
+				} else if (qs.type == '2') {
+					$("#title").html("<span>判断题：</span>"+qs.title);
 				}
 				$("#answer").html(qs.answer).hide();
 				$("#analysis").html(qs.analysis).hide();
@@ -75,6 +77,23 @@
 		$("#analysis").toggle();
 		$("#label").toggle();
 	}
+	
+	// 增加权重
+	function btnAdd() {
+		$.ajax({
+			type: 'post',
+			dataType: 'json',
+			data: {"id": $("#id").val()},
+			url: '/question/addWeight',
+			error: function() {
+				loading();
+			},
+			success: function(num) {
+				close();
+				toast("已增加问题权重："+num);
+			}
+		});
+	}
 </script>
 </head>
 <body>
@@ -88,16 +107,23 @@
 		<div class="area-zswd">
 			<div class="zswd-row">
 				<span class="zswd-left bg-color4 btn" onclick="btnEdit()" title="修改题目">题目</span>
-				<div class="zswd-right" id="title">
+				<div class="zswd-right zswd-title" id="title">
 					<c:if test="${question.type eq '0'}">
-						<b>${question.id}：</b>${question.title}
+						<span>单选题：</span>${question.title}
 						<p><br/>A. ${question.optionA}
 						<br/>B. ${question.optionB}
 						<br/>C. ${question.optionC}
 						<br/>D. ${question.optionD}</p>
 					</c:if>
 					<c:if test="${question.type eq '1'}">
-						<b>${question.id}：</b>${question.title}
+						<span>多选题：</span>${question.title}
+						<p><br/>A. ${question.optionA}
+						<br/>B. ${question.optionB}
+						<br/>C. ${question.optionC}
+						<br/>D. ${question.optionD}</p>
+					</c:if>
+					<c:if test="${question.type eq '2'}">
+						<span>判断题：</span>${question.title}
 					</c:if>
 				</div>
 			</div>
@@ -108,7 +134,7 @@
 				</div>
 			</div>
 			<div class="zswd-row">
-				<span class="zswd-left bg-color1">解析</span>
+				<span class="zswd-left bg-color1 btn" onclick="btnAdd()" title="增加权重">解析</span>
 				<div class="zswd-right" id="analysis" style="display: none; color: sienna;">
 					${question.analysis}
 				</div>

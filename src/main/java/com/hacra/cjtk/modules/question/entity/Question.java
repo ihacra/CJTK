@@ -21,7 +21,8 @@ public class Question extends BaseEntity<Question> {
 	private String answer;		// 答案
 	private String analysis;	// 解析
 	private String label;		// 标签分类
-	private String type;		// 题目类型（0：选择；1：填空）
+	private String type;		// 题目类型（0：单选；1：多选；2：判断）
+	private Integer weight;		// 问题权重
 	
 	public Question() {
 		super();
@@ -117,5 +118,13 @@ public class Question extends BaseEntity<Question> {
 
 	public void setType(String type) {
 		this.type = type;
+	}
+
+	public Integer getWeight() {
+		return weight;
+	}
+
+	public void setWeight(Integer weight) {
+		this.weight = weight;
 	}
 }

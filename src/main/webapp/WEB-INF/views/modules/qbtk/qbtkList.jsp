@@ -58,8 +58,8 @@
 				<c:if test="${question.type eq '0'}">
 					<div class="zswd-row">
 						<div class="zswd-left bg-color${(vs.index%5)+1} btn" onclick="btnView('${question.id}')" title="查看问题">${question.id}</div>
-						<div class="zswd-right">
-							<div class="zswd-title btn" onclick="btnShow('${question.id}')" title="显示答案">${question.title}</div>
+						<div class="zswd-right zswd-title">
+							<span class="btn" onclick="btnShow('${question.id}')" title="显示答案">单选题：</span>${question.title}
 							<p><br/>A. ${question.optionA}
 							<br/>B. ${question.optionB}
 							<br/>C. ${question.optionC}
@@ -75,8 +75,25 @@
 				<c:if test="${question.type eq '1'}">
 					<div class="zswd-row">
 						<div class="zswd-left bg-color${(vs.index%5)+1} btn" onclick="btnView('${question.id}')" title="查看问题">${question.id}</div>
-						<div class="zswd-right">
-							<div class="zswd-title btn" onclick="btnShow('${question.id}')" title="显示答案">${question.title}</div>
+						<div class="zswd-right zswd-title">
+							<span class="btn" onclick="btnShow('${question.id}')" title="显示答案">多选题：</span>${question.title}
+							<p><br/>A. ${question.optionA}
+							<br/>B. ${question.optionB}
+							<br/>C. ${question.optionC}
+							<br/>D. ${question.optionD}</p>
+							<div id="${question.id}" data-v="an" style="display: none; margin-top: 4px; color: sienna;">
+								<b>答案：</b>${question.answer}&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+								<b>标签：</b>${question.label}
+								<br/><b>解析：</b>${question.analysis}
+							</div>
+						</div>
+					</div>
+				</c:if>
+				<c:if test="${question.type eq '2'}">
+					<div class="zswd-row">
+						<div class="zswd-left bg-color${(vs.index%5)+1} btn" onclick="btnView('${question.id}')" title="查看问题">${question.id}</div>
+						<div class="zswd-right zswd-title">
+							<span class="btn" onclick="btnShow('${question.id}')" title="显示答案">判断题：</span>${question.title}
 							<div id="${question.id}" data-v="an" style="display: none; margin-top: 4px; color: sienna;">
 								<b>答案：</b>${question.answer}&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 								<b>标签：</b>${question.label}

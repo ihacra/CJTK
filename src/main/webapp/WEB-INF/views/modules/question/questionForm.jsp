@@ -8,6 +8,17 @@
 <script>
 	$(document).ready(function() {
 		$(".guide-item").removeClass("active");
+		$("#title").bind('input propertychange', function() {
+			var regex = /^([\w\W]+?)A.([\w\W]+?)B.([\w\W]+?)C.([\w\W]+?)D.([\w\W]+?)$/;
+	        if (regex.test($("#title").val())) {
+	        	data = [RegExp.$1, RegExp.$2, RegExp.$3, RegExp.$4, RegExp.$5];
+	        	$("#title").val($.trim(data[0])).change();
+				$("#optionA").val($.trim(data[1])).change();
+				$("#optionB").val($.trim(data[2])).change();
+				$("#optionC").val($.trim(data[3])).change();
+				$("#optionD").val($.trim(data[4])).change();
+	        }
+		});
 	});
 	
 	// 提交表单
@@ -28,14 +39,14 @@
 	
 	// 类型为选择题时显示ABCD选项输入框
 	function typeOnchange(id, value) {
-		if (value == '0') {
-			$("#option").slideDown("slow");
-		} else {
+		if (value == '2') {
 			$("#option").slideUp("slow");
-			$("#optionA").val(null);
-			$("#optionB").val(null);
-			$("#optionC").val(null);
-			$("#optionD").val(null);
+			$("#optionA").val(null).change();
+			$("#optionB").val(null).change();
+			$("#optionC").val(null).change();
+			$("#optionD").val(null).change();
+		} else {
+			$("#option").slideDown("slow");
 		}
 	}
 </script>
@@ -51,25 +62,25 @@
 				<div class="zswd-row">
 					<span class="zswd-left bg-color5">类型</span>
 					<div class="zswd-right">
-						<cl:radio name="type" label="选择题,填空题" value="0,1" checked="0" classStyle="required" onchange="typeOnchange"></cl:radio>
+						<cl:radio name="type" label="单选题,多选题,判断题" value="0,1,2" checked="0" classStyle="required" onchange="typeOnchange"></cl:radio>
 					</div>
 				</div>
 				<div class="zswd-row">
 					<span class="zswd-left bg-color1">题目</span>
 					<div class="zswd-right">
-						<cl:textarea name="title" rows="3" maxlength="300" classStyle="required" placeholder="请输入问题题目"></cl:textarea>
+						<cl:textarea path="title" rows="3" maxlength="300" classStyle="required" placeholder="请输入问题题目"></cl:textarea>
 						<div id="option">
 							<div style="margin: 12px 0 6px 0; display: inline-flex;">
-								A.&nbsp;&nbsp;<cl:input id="optionA" name="optionA" maxlength="60" classStyle="required" placeholder="选项A"></cl:input>
+								A.&nbsp;&nbsp;<cl:input path="optionA" maxlength="60" classStyle="required" placeholder="选项A"></cl:input>
 							</div>
 							<div style="margin: 6px 0; display: inline-flex;">
-								B.&nbsp;&nbsp;<cl:input id="optionB" name="optionB" maxlength="60" classStyle="required" placeholder="选项B"></cl:input>
+								B.&nbsp;&nbsp;<cl:input path="optionB" maxlength="60" classStyle="required" placeholder="选项B"></cl:input>
 							</div>
 							<div style="margin: 6px 0; display: inline-flex;">
-								C.&nbsp;&nbsp;<cl:input id="optionC" name="optionC" maxlength="60" classStyle="required" placeholder="选项C"></cl:input>
+								C.&nbsp;&nbsp;<cl:input path="optionC" maxlength="60" classStyle="required" placeholder="选项C"></cl:input>
 							</div>
 							<div style="margin: 6px 0 0 0; display: inline-flex;">
-								D.&nbsp;&nbsp;<cl:input id="optionD" name="optionD" maxlength="60" classStyle="required" placeholder="选项D"></cl:input>
+								D.&nbsp;&nbsp;<cl:input path="optionD" maxlength="60" classStyle="required" placeholder="选项D"></cl:input>
 							</div>
 						</div>
 					</div>
@@ -77,19 +88,19 @@
 				<div class="zswd-row">
 					<span class="zswd-left bg-color2">答案</span>
 					<div class="zswd-right">
-						<cl:textarea name="answer" rows="3" maxlength="150" classStyle="required" placeholder="请输入问题答案"></cl:textarea>
+						<cl:textarea path="answer" rows="3" maxlength="150" classStyle="required" placeholder="请输入问题答案"></cl:textarea>
 					</div>
 				</div>
 				<div class="zswd-row">
 					<span class="zswd-left bg-color3">解析</span>
 					<div class="zswd-right">
-						<cl:textarea name="analysis" rows="3" maxlength="300" placeholder="请输入问题解析"></cl:textarea>
+						<cl:textarea path="analysis" rows="3" maxlength="300" placeholder="请输入问题解析"></cl:textarea>
 					</div>
 				</div>
 				<div class="zswd-row">
 					<span class="zswd-left bg-color4">标签</span>
 					<div class="zswd-right">
-						<cl:input name="label" maxlength="30" placeholder="请输入问题标签（多个标签以逗号分割）"></cl:input>
+						<cl:input path="label" maxlength="30" placeholder="请输入问题标签（多个标签以逗号分割）"></cl:input>
 					</div>
 				</div>
 				<div class="zswd-row zswd-end">
